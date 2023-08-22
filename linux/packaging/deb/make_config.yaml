@@ -1,0 +1,26 @@
+display_name: Miria
+package_name: miria
+maintainer:
+  name: Npepperlinux
+priority: optional
+section: net
+installed_size: 37786
+dependencies:
+  - libsecret-1-0
+  - libjsoncpp25
+suggested_dependencies:
+  - zenity
+  - qarma
+essential: false
+postinstall_scripts:
+  - echo "Welcome to Fediverse!"
+icon: assets/images/icon.png
+keywords:
+  - Misskey
+  - みすきー
+  - Miria
+  - みりあ
+generic_name: Misskey Client
+categories:
+  - Network
+startup_notify: true  
