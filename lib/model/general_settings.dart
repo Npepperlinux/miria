@@ -84,6 +84,9 @@ class GeneralSettings with _$GeneralSettings {
 
     /// 使用するUnicodeの絵文字種別
     @Default(EmojiType.twemoji) EmojiType emojiType,
+
+    /// 起動時にウィンドウを最大化する
+    @Default(true) bool startWindowMaximize,
   }) = _GeneralSettings;
 
   factory GeneralSettings.fromJson(Map<String, dynamic> json) =>

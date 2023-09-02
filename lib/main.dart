@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:miria/router/app_router.dart';
 import 'package:miria/view/common/error_dialog_listener.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:miria/view/common/sharing_intent_listener.dart';
 import 'package:miria/view/themes/app_theme_scope.dart';
 import 'package:stack_trace/stack_trace.dart' as stack_trace;
+import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +18,7 @@ Future<void> main() async {
     if (stack is stack_trace.Chain) return stack.toTrace().vmTrace;
     return stack;
   };
-
+  setupWindow();
   runApp(ProviderScope(child: MyApp()));
 }
 
@@ -65,4 +67,22 @@ class AppScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.mouse,
         PointerDeviceKind.trackpad,
       };
+}
+
+void setupWindow() {
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    await windowManager.ensureInitialized();
+    if (startWindowMaximize == true) {
+      await windowManager.maximize();
+    } else {
+      WindowOptions windowOptions = WindowOptions(
+        size: Size(500, 800),
+        center: true,
+      );
+      windowManager.waitUntilReadyToShow(windowOptions, () async {
+        await windowManager.show();
+        await windowManager.focus();
+      })
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:miria/model/general_settings.dart';
 import 'package:miria/providers.dart';
@@ -27,6 +28,7 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
   TabPosition tabPosition = TabPosition.top;
   double textScaleFactor = 1.0;
   EmojiType emojiType = EmojiType.twemoji;
+  bool startWindowMaximize = true;
 
   @override
   void initState() {
@@ -62,6 +64,7 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
       tabPosition = settings.tabPosition;
       textScaleFactor = settings.textScaleFactor;
       emojiType = settings.emojiType;
+      startWindowMaximize = settings.startWindowMaximize;
     });
   }
 
@@ -80,6 +83,7 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
             tabPosition: tabPosition,
             emojiType: emojiType,
             textScaleFactor: textScaleFactor,
+            startWindowMaximize: startWindowMaximize,
           ),
         );
   }
@@ -330,6 +334,34 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
                   ),
                 ),
               ),
+              if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text: (
+                          "ウィンドウ",
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const Text("Windows,macOS,Linuxでのみ適用されます。")
+                        CheckboxListTile(
+                          value: startWindowMaximize,
+                          titile: const Text("ウィンドウサイズの最大化"),
+                          subtitle: const Text("起動時のウィンドウサイズを最大にします。"),
+                          onChanged: (value) => setState(() {
+                            startWindowMaximize = value ?? true;
+                            save();
+                          }),
+                        ),
+                      ]
+                    )
+                  )
+                )
+              }
             ],
           ),
         ),
