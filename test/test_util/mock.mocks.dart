@@ -556,6 +556,14 @@ class MockTabSettingsRepository extends _i1.Mock
         returnValueForMissingStub: _i16.Future<void>.value(),
       ) as _i16.Future<void>);
   @override
+  void maybeDispatchObjectCreation() => super.noSuchMethod(
+        Invocation.method(
+          #maybeDispatchObjectCreation,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   void addListener(_i18.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
@@ -654,6 +662,14 @@ class MockAccountSettingsRepository extends _i1.Mock
           ),
         ),
       ) as _i2.AccountSettings);
+  @override
+  void maybeDispatchObjectCreation() => super.noSuchMethod(
+        Invocation.method(
+          #maybeDispatchObjectCreation,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
   @override
   void addListener(_i18.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
@@ -799,6 +815,14 @@ class MockGeneralSettingsRepository extends _i1.Mock
         returnValue: _i16.Future<void>.value(),
         returnValueForMissingStub: _i16.Future<void>.value(),
       ) as _i16.Future<void>);
+  @override
+  void maybeDispatchObjectCreation() => super.noSuchMethod(
+        Invocation.method(
+          #maybeDispatchObjectCreation,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
   @override
   void addListener(_i18.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
@@ -2985,6 +3009,96 @@ class MockDio extends _i1.Mock implements _i25.Dio {
         returnValueForMissingStub: null,
       );
   @override
+  _i16.Future<_i13.Response<T>> head<T>(
+    String? path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    _i9.Options? options,
+    _i26.CancelToken? cancelToken,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #head,
+          [path],
+          {
+            #data: data,
+            #queryParameters: queryParameters,
+            #options: options,
+            #cancelToken: cancelToken,
+          },
+        ),
+        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #head,
+            [path],
+            {
+              #data: data,
+              #queryParameters: queryParameters,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #head,
+            [path],
+            {
+              #data: data,
+              #queryParameters: queryParameters,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+      ) as _i16.Future<_i13.Response<T>>);
+  @override
+  _i16.Future<_i13.Response<T>> headUri<T>(
+    Uri? uri, {
+    Object? data,
+    _i9.Options? options,
+    _i26.CancelToken? cancelToken,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #headUri,
+          [uri],
+          {
+            #data: data,
+            #options: options,
+            #cancelToken: cancelToken,
+          },
+        ),
+        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #headUri,
+            [uri],
+            {
+              #data: data,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #headUri,
+            [uri],
+            {
+              #data: data,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+      ) as _i16.Future<_i13.Response<T>>);
+  @override
   _i16.Future<_i13.Response<T>> get<T>(
     String? path, {
     Object? data,
@@ -3295,186 +3409,6 @@ class MockDio extends _i1.Mock implements _i25.Dio {
         )),
       ) as _i16.Future<_i13.Response<T>>);
   @override
-  _i16.Future<_i13.Response<T>> head<T>(
-    String? path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    _i9.Options? options,
-    _i26.CancelToken? cancelToken,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #head,
-          [path],
-          {
-            #data: data,
-            #queryParameters: queryParameters,
-            #options: options,
-            #cancelToken: cancelToken,
-          },
-        ),
-        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #head,
-            [path],
-            {
-              #data: data,
-              #queryParameters: queryParameters,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-        returnValueForMissingStub:
-            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #head,
-            [path],
-            {
-              #data: data,
-              #queryParameters: queryParameters,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-      ) as _i16.Future<_i13.Response<T>>);
-  @override
-  _i16.Future<_i13.Response<T>> headUri<T>(
-    Uri? uri, {
-    Object? data,
-    _i9.Options? options,
-    _i26.CancelToken? cancelToken,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #headUri,
-          [uri],
-          {
-            #data: data,
-            #options: options,
-            #cancelToken: cancelToken,
-          },
-        ),
-        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #headUri,
-            [uri],
-            {
-              #data: data,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-        returnValueForMissingStub:
-            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #headUri,
-            [uri],
-            {
-              #data: data,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-      ) as _i16.Future<_i13.Response<T>>);
-  @override
-  _i16.Future<_i13.Response<T>> delete<T>(
-    String? path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    _i9.Options? options,
-    _i26.CancelToken? cancelToken,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #delete,
-          [path],
-          {
-            #data: data,
-            #queryParameters: queryParameters,
-            #options: options,
-            #cancelToken: cancelToken,
-          },
-        ),
-        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #delete,
-            [path],
-            {
-              #data: data,
-              #queryParameters: queryParameters,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-        returnValueForMissingStub:
-            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #delete,
-            [path],
-            {
-              #data: data,
-              #queryParameters: queryParameters,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-      ) as _i16.Future<_i13.Response<T>>);
-  @override
-  _i16.Future<_i13.Response<T>> deleteUri<T>(
-    Uri? uri, {
-    Object? data,
-    _i9.Options? options,
-    _i26.CancelToken? cancelToken,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #deleteUri,
-          [uri],
-          {
-            #data: data,
-            #options: options,
-            #cancelToken: cancelToken,
-          },
-        ),
-        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #deleteUri,
-            [uri],
-            {
-              #data: data,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-        returnValueForMissingStub:
-            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
-          this,
-          Invocation.method(
-            #deleteUri,
-            [uri],
-            {
-              #data: data,
-              #options: options,
-              #cancelToken: cancelToken,
-            },
-          ),
-        )),
-      ) as _i16.Future<_i13.Response<T>>);
-  @override
   _i16.Future<_i13.Response<T>> patch<T>(
     String? path, {
     Object? data,
@@ -3576,6 +3510,96 @@ class MockDio extends _i1.Mock implements _i25.Dio {
               #cancelToken: cancelToken,
               #onSendProgress: onSendProgress,
               #onReceiveProgress: onReceiveProgress,
+            },
+          ),
+        )),
+      ) as _i16.Future<_i13.Response<T>>);
+  @override
+  _i16.Future<_i13.Response<T>> delete<T>(
+    String? path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    _i9.Options? options,
+    _i26.CancelToken? cancelToken,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [path],
+          {
+            #data: data,
+            #queryParameters: queryParameters,
+            #options: options,
+            #cancelToken: cancelToken,
+          },
+        ),
+        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #delete,
+            [path],
+            {
+              #data: data,
+              #queryParameters: queryParameters,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #delete,
+            [path],
+            {
+              #data: data,
+              #queryParameters: queryParameters,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+      ) as _i16.Future<_i13.Response<T>>);
+  @override
+  _i16.Future<_i13.Response<T>> deleteUri<T>(
+    Uri? uri, {
+    Object? data,
+    _i9.Options? options,
+    _i26.CancelToken? cancelToken,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteUri,
+          [uri],
+          {
+            #data: data,
+            #options: options,
+            #cancelToken: cancelToken,
+          },
+        ),
+        returnValue: _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #deleteUri,
+            [uri],
+            {
+              #data: data,
+              #options: options,
+              #cancelToken: cancelToken,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i16.Future<_i13.Response<T>>.value(_FakeResponse_43<T>(
+          this,
+          Invocation.method(
+            #deleteUri,
+            [uri],
+            {
+              #data: data,
+              #options: options,
+              #cancelToken: cancelToken,
             },
           ),
         )),
@@ -3718,7 +3742,7 @@ class MockDio extends _i1.Mock implements _i25.Dio {
       ) as _i16.Future<_i13.Response<dynamic>>);
   @override
   _i16.Future<_i13.Response<T>> request<T>(
-    String? path, {
+    String? url, {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i26.CancelToken? cancelToken,
@@ -3729,7 +3753,7 @@ class MockDio extends _i1.Mock implements _i25.Dio {
       (super.noSuchMethod(
         Invocation.method(
           #request,
-          [path],
+          [url],
           {
             #data: data,
             #queryParameters: queryParameters,
@@ -3743,7 +3767,7 @@ class MockDio extends _i1.Mock implements _i25.Dio {
           this,
           Invocation.method(
             #request,
-            [path],
+            [url],
             {
               #data: data,
               #queryParameters: queryParameters,
@@ -3759,7 +3783,7 @@ class MockDio extends _i1.Mock implements _i25.Dio {
           this,
           Invocation.method(
             #request,
-            [path],
+            [url],
             {
               #data: data,
               #queryParameters: queryParameters,

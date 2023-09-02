@@ -51,6 +51,9 @@ mixin _$GeneralSettings {
   /// 使用するUnicodeの絵文字種別
   EmojiType get emojiType => throw _privateConstructorUsedError;
 
+  /// 起動時にウィンドウを最大化する
+  bool get startWindowMaximize => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GeneralSettingsCopyWith<GeneralSettings> get copyWith =>
@@ -75,7 +78,8 @@ abstract class $GeneralSettingsCopyWith<$Res> {
       bool enableFavoritedRenoteElipsed,
       TabPosition tabPosition,
       double textScaleFactor,
-      EmojiType emojiType});
+      EmojiType emojiType,
+      bool startWindowMaximize});
 }
 
 /// @nodoc
@@ -103,6 +107,7 @@ class _$GeneralSettingsCopyWithImpl<$Res, $Val extends GeneralSettings>
     Object? tabPosition = null,
     Object? textScaleFactor = null,
     Object? emojiType = null,
+    Object? startWindowMaximize = null,
   }) {
     return _then(_value.copyWith(
       lightColorThemeId: null == lightColorThemeId
@@ -153,6 +158,10 @@ class _$GeneralSettingsCopyWithImpl<$Res, $Val extends GeneralSettings>
           ? _value.emojiType
           : emojiType // ignore: cast_nullable_to_non_nullable
               as EmojiType,
+      startWindowMaximize: null == startWindowMaximize
+          ? _value.startWindowMaximize
+          : startWindowMaximize // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -177,7 +186,8 @@ abstract class _$$_GeneralSettingsCopyWith<$Res>
       bool enableFavoritedRenoteElipsed,
       TabPosition tabPosition,
       double textScaleFactor,
-      EmojiType emojiType});
+      EmojiType emojiType,
+      bool startWindowMaximize});
 }
 
 /// @nodoc
@@ -203,6 +213,7 @@ class __$$_GeneralSettingsCopyWithImpl<$Res>
     Object? tabPosition = null,
     Object? textScaleFactor = null,
     Object? emojiType = null,
+    Object? startWindowMaximize = null,
   }) {
     return _then(_$_GeneralSettings(
       lightColorThemeId: null == lightColorThemeId
@@ -253,6 +264,10 @@ class __$$_GeneralSettingsCopyWithImpl<$Res>
           ? _value.emojiType
           : emojiType // ignore: cast_nullable_to_non_nullable
               as EmojiType,
+      startWindowMaximize: null == startWindowMaximize
+          ? _value.startWindowMaximize
+          : startWindowMaximize // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -272,7 +287,8 @@ class _$_GeneralSettings implements _GeneralSettings {
       this.enableFavoritedRenoteElipsed = true,
       this.tabPosition = TabPosition.top,
       this.textScaleFactor = 1.0,
-      this.emojiType = EmojiType.twemoji});
+      this.emojiType = EmojiType.twemoji,
+      this.startWindowMaximize = true});
 
   factory _$_GeneralSettings.fromJson(Map<String, dynamic> json) =>
       _$$_GeneralSettingsFromJson(json);
@@ -332,9 +348,14 @@ class _$_GeneralSettings implements _GeneralSettings {
   @JsonKey()
   final EmojiType emojiType;
 
+  /// 起動時にウィンドウを最大化する
+  @override
+  @JsonKey()
+  final bool startWindowMaximize;
+
   @override
   String toString() {
-    return 'GeneralSettings(lightColorThemeId: $lightColorThemeId, darkColorThemeId: $darkColorThemeId, themeColorSystem: $themeColorSystem, nsfwInherit: $nsfwInherit, enableDirectReaction: $enableDirectReaction, automaticPush: $automaticPush, enableAnimatedMFM: $enableAnimatedMFM, enableLongTextElipsed: $enableLongTextElipsed, enableFavoritedRenoteElipsed: $enableFavoritedRenoteElipsed, tabPosition: $tabPosition, textScaleFactor: $textScaleFactor, emojiType: $emojiType)';
+    return 'GeneralSettings(lightColorThemeId: $lightColorThemeId, darkColorThemeId: $darkColorThemeId, themeColorSystem: $themeColorSystem, nsfwInherit: $nsfwInherit, enableDirectReaction: $enableDirectReaction, automaticPush: $automaticPush, enableAnimatedMFM: $enableAnimatedMFM, enableLongTextElipsed: $enableLongTextElipsed, enableFavoritedRenoteElipsed: $enableFavoritedRenoteElipsed, tabPosition: $tabPosition, textScaleFactor: $textScaleFactor, emojiType: $emojiType, startWindowMaximize: $startWindowMaximize)';
   }
 
   @override
@@ -367,7 +388,9 @@ class _$_GeneralSettings implements _GeneralSettings {
             (identical(other.textScaleFactor, textScaleFactor) ||
                 other.textScaleFactor == textScaleFactor) &&
             (identical(other.emojiType, emojiType) ||
-                other.emojiType == emojiType));
+                other.emojiType == emojiType) &&
+            (identical(other.startWindowMaximize, startWindowMaximize) ||
+                other.startWindowMaximize == startWindowMaximize));
   }
 
   @JsonKey(ignore: true)
@@ -385,7 +408,8 @@ class _$_GeneralSettings implements _GeneralSettings {
       enableFavoritedRenoteElipsed,
       tabPosition,
       textScaleFactor,
-      emojiType);
+      emojiType,
+      startWindowMaximize);
 
   @JsonKey(ignore: true)
   @override
@@ -414,7 +438,8 @@ abstract class _GeneralSettings implements GeneralSettings {
       final bool enableFavoritedRenoteElipsed,
       final TabPosition tabPosition,
       final double textScaleFactor,
-      final EmojiType emojiType}) = _$_GeneralSettings;
+      final EmojiType emojiType,
+      final bool startWindowMaximize}) = _$_GeneralSettings;
 
   factory _GeneralSettings.fromJson(Map<String, dynamic> json) =
       _$_GeneralSettings.fromJson;
@@ -461,6 +486,10 @@ abstract class _GeneralSettings implements GeneralSettings {
 
   /// 使用するUnicodeの絵文字種別
   EmojiType get emojiType;
+  @override
+
+  /// 起動時にウィンドウを最大化する
+  bool get startWindowMaximize;
   @override
   @JsonKey(ignore: true)
   _$$_GeneralSettingsCopyWith<_$_GeneralSettings> get copyWith =>

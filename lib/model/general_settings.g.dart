@@ -30,6 +30,7 @@ _$_GeneralSettings _$$_GeneralSettingsFromJson(Map<String, dynamic> json) =>
       textScaleFactor: (json['textScaleFactor'] as num?)?.toDouble() ?? 1.0,
       emojiType: $enumDecodeNullable(_$EmojiTypeEnumMap, json['emojiType']) ??
           EmojiType.twemoji,
+      startWindowMaximize: json['startWindowMaximize'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$_GeneralSettingsToJson(_$_GeneralSettings instance) =>
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$_GeneralSettingsToJson(_$_GeneralSettings instance) =>
       'tabPosition': _$TabPositionEnumMap[instance.tabPosition]!,
       'textScaleFactor': instance.textScaleFactor,
       'emojiType': _$EmojiTypeEnumMap[instance.emojiType]!,
+      'startWindowMaximize': instance.startWindowMaximize,
     };
 
 const _$ThemeColorSystemEnumMap = {

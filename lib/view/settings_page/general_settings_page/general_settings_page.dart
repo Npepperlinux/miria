@@ -343,25 +343,27 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text: (
+                        Text(
                           "ウィンドウ",
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
-                        const Text("Windows,macOS,Linuxでのみ適用されます。")
+                        const Text("Windows,macOS,Linuxでのみ適用されます。"),
                         CheckboxListTile(
                           value: startWindowMaximize,
                           titile: const Text("ウィンドウサイズの最大化"),
                           subtitle: const Text("起動時のウィンドウサイズを最大にします。"),
-                          onChanged: (value) => setState(() {
-                            startWindowMaximize = value ?? true;
-                            save();
-                          }),
+                          onChanged: (value) { 
+                            setState(() {
+                              startWindowMaximize = value ?? true;
+                              save();
+                            });
+                          },
                         ),
-                      ]
-                    )
-                  )
-                )
-              }
+                      ],
+                    ),
+                  ),
+                ),
+              },
             ],
           ),
         ),

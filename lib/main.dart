@@ -72,17 +72,14 @@ class AppScrollBehavior extends MaterialScrollBehavior {
 void setupWindow() {
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     await windowManager.ensureInitialized();
-    if (startWindowMaximize == true) {
+
+    @override
+    Widget build(BuildContext context, WidgetRef ref) {
+      final setMaximizeWindow = ref.watch(generalSettingsRepositoryProvider
+      .select((value) => value.settings.startWindowMaximize));
+    }
+    if (setMaximizeWindow) {
       await windowManager.maximize();
-    } else {
-      WindowOptions windowOptions = WindowOptions(
-        size: Size(500, 800),
-        center: true,
-      );
-      windowManager.waitUntilReadyToShow(windowOptions, () async {
-        await windowManager.show();
-        await windowManager.focus();
-      })
     }
   }
 }
