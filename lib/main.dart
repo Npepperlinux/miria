@@ -70,7 +70,7 @@ class AppScrollBehavior extends MaterialScrollBehavior {
 }
 
 void setupWindow() {
-  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     await windowManager.ensureInitialized();
     if (startWindowMaximize == true) {
       await windowManager.maximize();
