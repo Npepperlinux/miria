@@ -1,0 +1,107 @@
+name: デプロイ(Linux)
+on: [push]
+permissions:  
+  contents: write
+
+jobs: 
+  build_for_linux:  
+    name: Linux用ビルド
+    runs-on:  ubuntu-latest
+    steps:  
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Flutter Develop Tools
+        run:  |
+          sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+      
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with: 
+          channel:  'stable'
+
+      - name: Install Flutter Build Tools for Linux
+        run:  sudo apt install -y libsecret-1-dev imagemagick
+
+      - name: Install AppImage Build Tools
+        run:  |
+          wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod +x appimagetool
+          sudo mv appimagetool /usr/local/bin/
+
+      - name: Flutter pub get
+        run:  flutter pub get
+
+      - name: Get version
+        run:  echo "BUMP_VERSION=$(pub flutter run cider version)" >> $GITHUB_ENV
+
+      - name: Build for Linux
+        run:  flutter build linux --release
+
+      - name: Move artifact to AppImage Directory
+        run:  |
+          mkdir -p miria.AppDir/usr/share/
+          cp -r build/linux/x64/release/bundle miria.AppDir/usr/share/miria
+
+      - name: Copy Icon Images
+        run:  |
+          mkdir -p miria.AppDir/usr/share/icons/hicolor/16x16/apps
+          mkdir -p miria.AppDir/usr/share/icons/hicolor/32x32/apps
+          mkdir -p miria.AppDir/usr/share/icons/hicolor/64x64/apps
+          mkdir -p miria.AppDir/usr/share/icons/hicolor/128x128/apps
+          mkdir -p miria.AppDir/usr/share/icons/hicolor/256x256/apps
+          convert assets/images/icon.png -resize 16x16 miria.AppDir/usr/share/icons/hicolor/16x16/apps/miria.png
+          convert assets/images/icon.png -resize 32x32 miria.AppDir/usr/share/icons/hicolor/32x32/apps/miria.png
+          convert assets/images/icon.png -resize 64x64 miria.AppDir/usr/share/icons/hicolor/64x64/apps/miria.png
+          convert assets/images/icon.png -resize 128x128 miria.AppDir/usr/share/icons/hicolor/128x128/apps/miria.png
+          convert assets/images/icon.png -resize 256x256 miria.AppDir/usr/share/icons/hicolor/256x256/apps/miria.png
+
+      - name: Create Desktop Entry
+        run:  |
+          mkdir -p miria.AppDir/usr/share/applications
+          cat << EOF > miria.AppDir/usr/share/applications/miria.desktop
+          [Desktop Entry]
+          Version=1.0
+          Categories=Network;InstantMessaging;GTK;
+          Comment=Misskey client for mobile app
+          Comment[ja]=Misskey向けのモバイル用クライアントアプリ
+          Exec=miria %u
+          GenericName=Misskey client
+          Icon=miria
+          Name=Miria
+          Type=Application
+          Keywords=misskey;miria;みすきー;みりあ;
+          EOF 
+
+      - name: Create AppRun
+        run:  |
+          cat << EOF > miria.AppDir/AppRun
+          #!/bin/sh
+          appimagepath="$(dirname "$(readlink -f "${0}")")"
+          exec "${appimagepath}/miria"
+          EOF
+
+      - name: Create Symbolic links
+        run:  |
+          ln -s miria.AppDir/miria miria.AppDir/usr/share/miria/miria
+          ln -s miria.AppDir/miria.png miria.AppDir/usr/share/icons/hicolor/128x128/apps/miria.png
+          ln -s miria.AppDir/.DirIcon miria.AppDir/miria.png
+          ln -s miria.AppDir/miria.desktop miria.AppDir/usr/share/applications/miria.desktop
+
+      - name: CHMOD
+        run:  |
+          chmod +x miria.AppDir/AppRun
+          chmod +x miria.AppDir/usr/share/miria/miria
+          chmod +x miria.AppDir/usr/share/applications/miria.desktop
+
+      - name: Create AppImage
+        run:  |
+          appimagetool --appimage-extract
+          ./squashfs-root/AppRun miria.AppDir/
+          mv miria-x86_64.AppImage miria-$BUMP_VERSION-amd64.AppImage
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          path: miria-$BUMP_VERSION-amd64.AppImage
+          retention-days: 3
