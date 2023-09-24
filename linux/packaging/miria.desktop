@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Categories=Network;InstantMessaging;GTK;
+Comment=Misskey client for mobile app
+Comment[ja]=Misskey向けのモバイル用クライアントアプリ
+Exec=miria %u
+GenericName=Misskey client
+Icon=miria
+Name=Miria
+Type=Application
+Keywords=misskey;miria;みすきー;みりあ;

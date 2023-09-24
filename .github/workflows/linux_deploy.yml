@@ -59,27 +59,11 @@ jobs:
       - name: Create Desktop Entry
         run:  |
           mkdir -p miria.AppDir/usr/share/applications
-          cat << EOF > miria.AppDir/usr/share/applications/miria.desktop
-          [Desktop Entry]
-          Version=1.0
-          Categories=Network;InstantMessaging;GTK;
-          Comment=Misskey client for mobile app
-          Comment[ja]=Misskey向けのモバイル用クライアントアプリ
-          Exec=miria %u
-          GenericName=Misskey client
-          Icon=miria
-          Name=Miria
-          Type=Application
-          Keywords=misskey;miria;みすきー;みりあ;
-          EOF 
+          cp linux/packaging/miria.desktop miria.AppDir/usr/share/applications/
 
       - name: Create AppRun
         run:  |
-          cat << EOF > miria.AppDir/AppRun
-          #!/bin/sh
-          appimagepath="$(dirname "$(readlink -f "${0}")")"
-          exec "${appimagepath}/miria"
-          EOF
+          cp linux/packaging/AppRun miria.AppDir/AppRun
 
       - name: Create Symbolic links
         run:  |
