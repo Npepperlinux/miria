@@ -19,7 +19,16 @@ static void my_application_activate(GApplication* application) {
   MyApplication* self = MY_APPLICATION(application);
   GtkWindow* window =
       GTK_WINDOW(gtk_application_window_new(GTK_APPLICATION(application)));
+  GtkIconTheme* theme = gtk_icon_theme_get_default();
+  gint icons[5] = {256, 128, 64, 32, 16};
+  for (int i = 0; i < 5; i++) {
+    GdkPixbuf* icon = gtk_icon_theme_load_icon(theme, "miria", icons[i], GTK_ICON_LOOKUP_NO_SVG, NULL);
+    if (icon != nullptr) {
+      gtk_window_set_icon(window, icon);
+    } else {
 
+    }
+  }
   // Use a header bar when running in GNOME as this is the common style used
   // by applications and is the setup most users will be using (e.g. Ubuntu
   // desktop).
