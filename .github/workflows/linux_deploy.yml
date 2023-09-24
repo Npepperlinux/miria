@@ -59,7 +59,8 @@ jobs:
       - name: Create Desktop Entry
         run:  |
           mkdir -p miria.AppDir/usr/share/applications
-          cp linux/packaging/miria.desktop miria.AppDir/usr/share/applications/
+          cp linux/packaging/miria.desktop miria.AppDir/usr/share/applications/miria.desktop
+          cp linux/packaging/miria.desktop miria.AppDir/miria.desktop
 
       - name: Create AppRun
         run:  |
@@ -70,13 +71,13 @@ jobs:
           ln -s miria.AppDir/usr/share/miria/miria miria.AppDir/miria
           ln -s miria.AppDir/usr/share/icons/hicolor/128x128/apps/miria.png miria.AppDir/miria.png
           ln -s miria.AppDir/miria.png miria.AppDir/.DirIcon
-          ln -s miria.AppDir/usr/share/applications/miria.desktop miria.AppDir/miria.desktop
 
       - name: CHMOD
         run:  |
           chmod +x miria.AppDir/AppRun
           chmod +x miria.AppDir/usr/share/miria/miria
           chmod +x miria.AppDir/usr/share/applications/miria.desktop
+          chmod +x miria.AppDir/miria.desktop
 
       - name: Create AppImage
         run:  |
