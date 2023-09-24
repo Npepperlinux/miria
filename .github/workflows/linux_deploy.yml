@@ -76,7 +76,6 @@ jobs:
         run:  |
           chmod +x miria.AppDir/AppRun
           chmod +x miria.AppDir/usr/share/miria/miria
-          chmod +x miria.AppDir/usr/share/applications/miria.desktop
           chmod +x miria.AppDir/miria.desktop
 
       - name: Create AppImage
