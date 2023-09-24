@@ -82,10 +82,9 @@ jobs:
         run:  |
           appimagetool --appimage-extract
           ./squashfs-root/AppRun miria.AppDir/
-          mv Miria-x86_64.AppImage miria-$BUMP_VERSION-amd64.AppImage
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.2.0
         with:
-          path: miria-$BUMP_VERSION-amd64.AppImage
+          path: Miria-x86_64.AppImage
           retention-days: 3
