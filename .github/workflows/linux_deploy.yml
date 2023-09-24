@@ -83,10 +83,10 @@ jobs:
 
       - name: Create Symbolic links
         run:  |
-          ln -s miria.AppDir/miria miria.AppDir/usr/share/miria/miria
-          ln -s miria.AppDir/miria.png miria.AppDir/usr/share/icons/hicolor/128x128/apps/miria.png
-          ln -s miria.AppDir/.DirIcon miria.AppDir/miria.png
-          ln -s miria.AppDir/miria.desktop miria.AppDir/usr/share/applications/miria.desktop
+          ln -s miria.AppDir/usr/share/miria/miria miria.AppDir/miria
+          ln -s miria.AppDir/usr/share/icons/hicolor/128x128/apps/miria.png miria.AppDir/miria.png
+          ln -s miria.AppDir/miria.png miria.AppDir/.DirIcon
+          ln -s miria.AppDir/usr/share/applications/miria.desktop miria.AppDir/miria.desktop
 
       - name: CHMOD
         run:  |
