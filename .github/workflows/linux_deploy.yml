@@ -86,5 +86,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2.2.0
         with:
-          path: Miria-x86_64.AppImage
+          path: ./miria.AppDir/Miria-x86_64.AppImage
           retention-days: 3
