@@ -21,7 +21,7 @@ jobs:
           channel:  'stable'
 
       - name: Install Flutter Build Tools for Linux
-        run:  sudo apt install -y libsecret-1-dev imagemagick
+        run:  sudo apt install -y libsecret-1-dev imagemagick appstream appstream-compose
 
       - name: Install AppImage Build Tools
         run:  |
