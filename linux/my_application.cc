@@ -25,7 +25,9 @@ static void my_application_activate(GApplication* application) {
     GdkPixbuf* icon = gtk_icon_theme_load_icon(theme, "miria", icons[i], GTK_ICON_LOOKUP_NO_SVG, NULL);
     if (icon != nullptr) {
       gtk_window_set_icon(window, icon);
-    } 
+    } else {
+      gtk_window_set_icon_from_file(window, "miria.png", NULL);
+    }
   }
   // Use a header bar when running in GNOME as this is the common style used
   // by applications and is the setup most users will be using (e.g. Ubuntu
