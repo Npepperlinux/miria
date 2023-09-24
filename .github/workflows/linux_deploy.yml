@@ -54,12 +54,12 @@ jobs:
           convert assets/images/icon.png -resize 32x32 miria.AppDir/usr/share/icons/hicolor/32x32/apps/miria.png
           convert assets/images/icon.png -resize 64x64 miria.AppDir/usr/share/icons/hicolor/64x64/apps/miria.png
           convert assets/images/icon.png -resize 128x128 miria.AppDir/usr/share/icons/hicolor/128x128/apps/miria.png
-          convert assets/images/icon.png -resize 256x256 miria.AppDir/miria.png
+          convert assets/images/icon.png -resize 256x256 miria.AppDir/usr/share/icons/hicolor/256x256/apps/miria.png
 
       - name: Create Desktop Entry
         run:  |
           mkdir -p miria.AppDir/usr/share/applications
-          cp linux/packaging/miria.desktop miria.AppDir/miria.desktop
+          cp linux/packaging/miria.desktop miria.AppDir/usr/share/applications/miria.desktop
 
       - name: Create AppRun
         run:  |
@@ -67,16 +67,16 @@ jobs:
 
       - name: Create Symbolic links
         run:  |
-          ln -s miria.AppDir/usr/share/miria/miria miria.AppDir/miria
-          ln -s miria.AppDir/miria.png miria.AppDir/usr/share/icons/hicolor/256x256/apps/miria.png
-          ln -s miria.AppDir/miria.png miria.AppDir/.DirIcon
-          ln -s miria.AppDir/miria.desktop miria.AppDir/usr/share/applications/miria.desktop
+          ln -s usr/share/miria/miria miria.AppDir/miria
+          ln -s usr/share/icons/hicolor/256x256/apps/miria.png miria.AppDir/miria.png
+          ln -s miria.png miria.AppDir/.DirIcon
+          ln -s usr/share/applications/miria.desktop miria.AppDir/miria.desktop
 
       - name: CHMOD
         run:  |
           chmod +x miria.AppDir/AppRun
           chmod +x miria.AppDir/usr/share/miria/miria
-          chmod +x miria.AppDir/miria.desktop
+          chmod +x miria.AppDir/usr/share/applications/miria.desktop
 
       - name: Create AppImage
         run:  |
