@@ -42,7 +42,6 @@ jobs:
         run:  |
           mkdir -p miria.AppDir/usr/share/
           cp -r build/linux/x64/release/bundle miria.AppDir/usr/share/miria
-          mv miria.AppDir/usr/share/miria/lib miria.AppDir/usr/lib
 
       - name: Copy Icon Images
         run:  |
