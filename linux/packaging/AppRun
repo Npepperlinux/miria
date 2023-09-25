@@ -1,4 +1,5 @@
 #!/bin/sh
 appimagepath="$(dirname "$(readlink -f "${0}")")"
 export PATH=${appimagepath}/bin:${PATH}
+export XDG_DATA_DIRS=${appimagepath}/share:${XDG_DATA_DIRS}
 exec "${appimagepath}/miria"
