@@ -1,3 +1,4 @@
 #!/bin/sh
 appimagepath="$(dirname "$(readlink -f "${0}")")"
+export PATH=${appimagepath}/bin:${PATH}
 exec "${appimagepath}/miria"

@@ -42,6 +42,7 @@ jobs:
         run:  |
           mkdir -p miria.AppDir/usr/share/
           cp -r build/linux/x64/release/bundle miria.AppDir/usr/share/miria
+          mv miria.AppDir/usr/share/miria/lib miria.AppDir/usr/lib
 
       - name: Copy Icon Images
         run:  |
@@ -71,6 +72,8 @@ jobs:
           ln -s usr/share/icons/hicolor/256x256/apps/miria.png miria.AppDir/miria.png
           ln -s miria.png miria.AppDir/.DirIcon
           ln -s usr/share/applications/miria.desktop miria.AppDir/miria.desktop
+          mkdir miria.AppDir/usr/bin
+          ln -s usr/share/miria/miria miria.AppDir/usr/bin/miria
 
       - name: CHMOD
         run:  |
