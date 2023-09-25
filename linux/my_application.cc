@@ -26,7 +26,7 @@ static void my_application_activate(GApplication* application) {
     if (icon != nullptr) {
       gtk_window_set_icon(window, icon);
     } else {
-      gtk_window_set_icon_from_file(window, "data/flutter_assets/assets/images/icon.png")
+      gtk_window_set_icon_from_file(window, "data/flutter_assets/assets/images/icon.png", NULL)
     }
   }
   // Use a header bar when running in GNOME as this is the common style used
