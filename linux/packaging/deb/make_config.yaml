@@ -1,0 +1,23 @@
+display_name: Miria
+package_name: miria
+maintainer:
+  name: Npepperlinux
+priority: optional
+section:  net
+install_size: 68000
+dependencies:
+  - libsecret-1-0
+  - libmpv1
+pre_dependencies:
+  - libc6
+essential: false
+icon: assets/images/miria.png
+keywords:
+  - Misskey
+  - Miria
+  - みすきー
+  - みりあ
+generic_name: Misskey Client for Mobile App
+categories:
+  - InstantMessaging
+startup_notify: true
