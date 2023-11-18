@@ -34,7 +34,7 @@ jobs:
       - name: Convert Icon Image
         run:  |
           sudo apt install -y imagemagick
-          convert assets/images/icon.png 256x256 assets/images/miria.png
+          convert assets/images/icon.png -resize 256x256 assets/images/miria.png
           rm assets/images/icon_adaptive.png
 
       - name: Install Flutter Build Tools for Linux

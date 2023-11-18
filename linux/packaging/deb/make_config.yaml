@@ -4,7 +4,7 @@ maintainer:
   name: Npepperlinux
 priority: optional
 section:  net
-install_size: 68000
+installed_size: 68000
 dependencies:
   - libsecret-1-0
   - libmpv1

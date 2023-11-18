@@ -50,3 +50,4 @@ app.*.map.json
 
 # Release
 /private_keys/
+dist/*
