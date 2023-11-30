@@ -85,7 +85,7 @@ parts:
     override-pull: |
       craftctl default
       # バージョン情報の取得
-      craftctl set version=$(flutter pub run cider version)
+      craftctl set version=$(cat pubspec.yaml | grep version | cut -d ' ' -f 2)
       # Snap用アイコンの作成
       convert assets/images/icon.png -resize 256x256 snap/gui/miria.png
       # Android用アイコンの削除
