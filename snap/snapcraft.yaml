@@ -129,10 +129,10 @@ parts:
         cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" "$SNAPCRAFT_PRIME/usr/{}" \;
       done
       # literにより不要とされたライブラリの削除（手動）
-      rm -rf usr/share/miria/lib/libmedia_kit_native_event_loop.so*
-      # for lib in "libcairo-gobject.so" "libcairo.so" "libflite_cmu_grapheme_lang.so" "libflite_cmu_grapheme_lex.so" "libflite_cmu_indic_lex.so" "libflite_cmu_time_awb.so" "libgdk_pixbuf-2.0.so" "libharfbuzz.so" "liblua5.2-c++.so" "libmfx-tracer.so" "libmfxhw64.so" "libpango-1.0.so" "libpangocairo-1.0.so" "libpangoft2-1.0.so" "libpixman-1.so" "libsphinxad.so" "libva-drm.so" "libva-wayland.so" "libva-x11.so" "libva.so" "libwayland-client.so" "libwayland-cursor.so" "libwayland-egl.so" "libwayland-server.so" "libzvbi-chains.so"; do
-      #   rm -rf "$SNAPCRAFT_PRIME/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/$lib"*
-      # done
+      rm -rf "$SNAPCRAFT_PRIME/usr/share/miria/lib/libmedia_kit_native_event_loop.so"*
+      for lib in "libcairo-gobject.so" "libcairo.so" "libflite_cmu_grapheme_lang.so" "libflite_cmu_grapheme_lex.so" "libflite_cmu_indic_lex.so" "libflite_cmu_time_awb.so" "libgdk_pixbuf-2.0.so" "libharfbuzz.so" "liblua5.2-c++.so" "libmfx-tracer.so" "libmfxhw64.so" "libpango-1.0.so" "libpangocairo-1.0.so" "libpangoft2-1.0.so" "libpixman-1.so" "libsphinxad.so" "libva-drm.so" "libva-wayland.so" "libva-x11.so" "libva.so" "libwayland-client.so" "libwayland-cursor.so" "libwayland-egl.so" "libwayland-server.so" "libzvbi-chains.so"; do
+        rm -rf "$SNAPCRAFT_PRIME/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/$lib"*
+      done
       for CRUFT in bug lintian man; do
         rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
       done
