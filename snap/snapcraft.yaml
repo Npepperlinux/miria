@@ -74,10 +74,10 @@ parts:
       - curl
       - libmpv-dev
       - libsecret-1-dev
+      - imagemagick # Snap用アイコン作成のため
     stage-packages:
       - libmpv1 # media_kitによる動画再生のため
       - libsecret-1-0 # flutter_secure_storageによるパスワード保存のため
-      - imagemagick # Snap用アイコン作成のため
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/usr/share/miria
       set +e
