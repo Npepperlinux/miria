@@ -81,7 +81,7 @@ parts:
   miria:
     source: .
     after: [flutter-git]
-    plugin: flutter-git
+    plugin: nil
     override-pull: |
       craftctl default
       # バージョン情報の取得
