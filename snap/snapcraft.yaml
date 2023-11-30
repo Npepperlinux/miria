@@ -102,11 +102,6 @@ parts:
       - libsecret-1-0 # flutter_secure_storageによるパスワード保存のため
       - libblas3
       - liblapack3
-    prime:
-      - usr/lib/*/libmpv.so*
-      - usr/lib/*/libsecret-1.so*
-      - usr/lib/*/blas/libblas.so*
-      - usr/lib/*/lapack/liblapack.so*
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/usr/share/miria
       set +e
