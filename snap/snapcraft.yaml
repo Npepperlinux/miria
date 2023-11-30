@@ -1,0 +1,116 @@
+name: miria # 'snapcraft register miria'で名前を予約する必要があります。
+title: Miria
+type: app
+summary: Misskey Client App # 79文字まで
+description: |
+  Miriaは分散型SNS「Misskey」のクライアントアプリです。
+
+  機能
+
+  * タイムラインの閲覧やノートの投稿、「アンテナ」「チャンネル」「みつける」などの基本的な機能を利用することができます。
+  * 複数アカウント、複数サーバーに対応しています。(※2個目以降のアカウントを追加したあとは、アカウントに紐づくタブを追加する必要があります。)
+  * MFMに対応しています。
+  * タブにカスタム絵文字を設定することができます。
+  * リアクションピッカーの精度が高く、ひらがなでも検索しやすくなっています。
+  * 投稿欄でMFMの入力補完をすることができ、MFMの構文やカスタム絵文字をスムーズに入力することができます。
+  * 配色を複数のパターンから切り替えることができます。
+
+  制限事項
+
+  * このアプリでは新規登録およびアカウント削除の機能を提供していません。新規登録や削除が必要な場合、登録や削除に必要な要件をそれぞれのサーバーへご確認ください。
+  * このアプリではサーバーを提供していません。このアプリと一緒に特定のサーバーを付随して提供していないので、このアプリ単独で利用することはできません。
+  * このアプリはMisskey v12以前のバージョンやFirefishなどの派生したアプリケーションに対応していません。
+  * モバイル向けに開発されたアプリであるため、一部機能はデスクトップで動作しません。
+
+  注意：インストール後、パスワード管理サービスにアクセスできるように、下記のコマンドを実行してください。
+
+  `sudo snap connect miria:password-manager-service`
+license: AGPL-3.0
+website: https://shiosyakeyakini.info/miria_web
+source-code: https://github.com/shiosyakeyakini-info/miria
+issues: https://github.com/shiosyakeyakini-info/miria/issues
+donation: https://shiosyakeyakini.fanbox.cc
+icon: assets/images/miria.png
+adopt-info: miria
+base: core22
+grade: stable
+confinement: strict 
+compression: lzo
+architectures:
+  - amd64
+  - arm64
+
+apps:
+  miria:
+    command: usr/share/miria/miria
+    extensions: [gnome]
+    plugs:
+      - home
+      - unity7
+      - network
+      - audio-playback
+      # 以下はユーザーが接続を許可するまで使用不可（password-manager-serviceは必須）
+      - removable-media
+      - password-manager-service
+    environment:
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gio/modules"
+
+parts:
+  miria:
+    source: .
+    plugin: flutter
+    override-pull: |
+      craftctl default
+      # バージョン情報の取得
+      craftctl set version=$(cat pubspec.yaml | grep "version[:]" | cut -d ' ' -f 2)
+      # Snap用アイコンの作成
+      convert assets/images/icon.png -resize 256x256 snap/gui/miria.png
+      # Android用アイコンの削除
+      rm assets/images/icon_adaptive.png
+    flutter-target: lib/main.dart
+    build-environment:
+      - LD_LIBRARY_PATH: $SNAPCRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/gnome-42-2204-sdk/current/lib/$CRAFT_ARCH_TRIPLET:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/gnome-42-2204-sdk/current/usr/lib:/snap/gnome-42-2204-sdk/current/usr/lib/vala-current:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/pulseaudio${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+    build-packages:
+      - curl
+      - libmpv-dev
+      - libsecret-1-dev
+    stage-packages:
+      - libmpv1 # media_kitによる動画再生のため
+      - libsecret-1-0 # flutter_secure_storageによるパスワード保存のため
+      - imagemagick # Snap用アイコン作成のため
+    override-build: |
+      mkdir -p $CRAFT_PART_INSTALL/usr/share/miria
+      set +e
+      flutter pub get
+      set -eux
+      flutter build linux --release
+      cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/usr/share/miria/
+  # Snapとファイル選択ダイアログの統合のため
+  # 詳細: https://forum.snapcraft.io/t/integrate-custom-dialogs-in-your-snap/10825
+  zenity:
+    plugin: nil
+    stage-packages:
+      - zenity
+    prime:
+      - usr/bin/zenity
+      - usr/share/zenity/*
+
+  cleanup:
+    after: [miria, zenity]  # 不要なライブラリを削除する機能であるため、最後に実行
+    plugin: nil
+    build-snaps: [gnome-42-2204, gtk-common-themes, core22]  # GNOME 42に含まれているライブラリを削除するため
+    override-prime: |
+      set -eux
+      for snap in "gnome-42-2204" "gtk-common-themes" "core22"; do  # List all content-snaps you're using here
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" "$SNAPCRAFT_PRIME/usr/{}" \;
+      done
+      # literにより不要とされたライブラリの削除（手動）
+      rm -rf usr/share/miria/lib/libmedia_kit_native_event_loop.so*
+      # for lib in "libcairo-gobject.so" "libcairo.so" "libflite_cmu_grapheme_lang.so" "libflite_cmu_grapheme_lex.so" "libflite_cmu_indic_lex.so" "libflite_cmu_time_awb.so" "libgdk_pixbuf-2.0.so" "libharfbuzz.so" "liblua5.2-c++.so" "libmfx-tracer.so" "libmfxhw64.so" "libpango-1.0.so" "libpangocairo-1.0.so" "libpangoft2-1.0.so" "libpixman-1.so" "libsphinxad.so" "libva-drm.so" "libva-wayland.so" "libva-x11.so" "libva.so" "libwayland-client.so" "libwayland-cursor.so" "libwayland-egl.so" "libwayland-server.so" "libzvbi-chains.so"; do
+      #   rm -rf "$SNAPCRAFT_PRIME/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/$lib"*
+      # done
+      for CRUFT in bug lintian man; do
+        rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
+      done
+      find $SNAPCRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
+      find $SNAPCRAFT_PRIME/usr/share -type d -empty -delete
