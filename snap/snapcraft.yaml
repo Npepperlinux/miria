@@ -53,16 +53,39 @@ apps:
       - removable-media
       - password-manager-service
     environment:
-      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gio/modules"
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gio/modules"
 
 parts:
+  flutter-git:
+    source: https://github.com/flutter/flutter.git
+    source-tag: 3.16.0
+    source-depth: 1
+    plugin: nil
+    override-build: |
+      mkdir -p $CRAFT_PART_INSTALL/usr/bin
+      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
+      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
+      ln -s $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
+      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/dart $SNAPCRAFT_PART_INSTALL/usr/bin/dart
+      $CRAFT_PART_INSTALL/usr/bin/flutter doctor
+    build-packages:
+      - clang
+      - cmake
+      - curl
+      - libgtk-3-dev
+      - ninja-build
+      - unzip
+      - xz-utils
+      - zip
+    override-prime: ''
   miria:
     source: .
-    plugin: flutter
+    after: [flutter-git]
+    plugin: flutter-git
     override-pull: |
       craftctl default
       # バージョン情報の取得
-      craftctl set version=$(cat pubspec.yaml | grep "version[:]" | cut -d ' ' -f 2)
+      craftctl set version=$(flutter pub run cider version)
       # Snap用アイコンの作成
       convert assets/images/icon.png -resize 256x256 snap/gui/miria.png
       # Android用アイコンの削除
@@ -78,6 +101,13 @@ parts:
     stage-packages:
       - libmpv1 # media_kitによる動画再生のため
       - libsecret-1-0 # flutter_secure_storageによるパスワード保存のため
+      - libblas3
+      - liblapack3
+    prime:
+      - usr/lib/*/libmpv.so*
+      - usr/lib/*/libsecret-1.so*
+      - usr/lib/*/blas/libblas.so*
+      - usr/lib/*/lapack/liblapack.so*
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/usr/share/miria
       set +e
