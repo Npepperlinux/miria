@@ -53,7 +53,7 @@ apps:
       - removable-media
       - password-manager-service
     environment:
-      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gio/modules"
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gio/modules:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack"
 
 parts:
   flutter-git:
@@ -87,7 +87,7 @@ parts:
       # バージョン情報の取得
       craftctl set version=$(cat pubspec.yaml | grep version | cut -d ' ' -f 2)
       # Snap用アイコンの作成
-      convert assets/images/icon.png -resize 256x256 snap/gui/miria.png
+      convert assets/images/icon.png -resize 256x256 assets/images/miria.png
       # Android用アイコンの削除
       rm assets/images/icon_adaptive.png
     build-environment:
@@ -100,8 +100,6 @@ parts:
     stage-packages:
       - libmpv1 # media_kitによる動画再生のため
       - libsecret-1-0 # flutter_secure_storageによるパスワード保存のため
-      - libblas3
-      - liblapack3
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/usr/share/miria
       set +e
@@ -130,7 +128,7 @@ parts:
       done
       # literにより不要とされたライブラリの削除（手動）
       rm -rf "$SNAPCRAFT_PRIME/usr/share/miria/lib/libmedia_kit_native_event_loop.so"*
-      for lib in "libcairo-gobject.so" "libcairo.so" "libflite_cmu_grapheme_lang.so" "libflite_cmu_grapheme_lex.so" "libflite_cmu_indic_lex.so" "libflite_cmu_time_awb.so" "libgdk_pixbuf-2.0.so" "libharfbuzz.so" "liblua5.2-c++.so" "libmfx-tracer.so" "libmfxhw64.so" "libpango-1.0.so" "libpangocairo-1.0.so" "libpangoft2-1.0.so" "libpixman-1.so" "libsphinxad.so" "libva-drm.so" "libva-wayland.so" "libva-x11.so" "libva.so" "libwayland-client.so" "libwayland-cursor.so" "libwayland-egl.so" "libwayland-server.so" "libzvbi-chains.so"; do
+      for lib in "libcairo-gobject.so" "libcairo.so" "libflite_cmu_grapheme_lang.so" "libflite_cmu_grapheme_lex.so" "libflite_cmu_indic_lex.so" "libflite_cmu_indic_lang.so" "libflite_cmu_time_awb.so" "libgdk_pixbuf-2.0.so" "libharfbuzz.so" "liblua5.2-c++.so" "libmfx-tracer.so" "libmfxhw64.so" "libpango-1.0.so" "libpangocairo-1.0.so" "libpangoft2-1.0.so" "libpixman-1.so" "libsphinxad.so" "libva-drm.so" "libva-wayland.so" "libva-x11.so" "libva.so" "libwayland-client.so" "libwayland-cursor.so" "libwayland-egl.so" "libwayland-server.so" "libzvbi-chains.so"; do
         rm -rf "$SNAPCRAFT_PRIME/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/$lib"*
       done
       for CRUFT in bug lintian man; do
