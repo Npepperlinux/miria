@@ -61,7 +61,7 @@ class RenoteModalSheetState extends ConsumerState<RenoteModalSheet> {
                     channelId: channel.id,
                   ));
               scaffoldMessenger
-                  .showSnackBar(const SnackBar(content: Text("Renoteしました。")));
+                  .showSnackBar(const SnackBar(content: Text("Renoteしました。"), behavior: SnackBarBehavior.floating, margin: EdgeInsetsDirectional.symmetric(vertical: 80)));
               navigator.pop();
             }.expectFailure(context),
             title: Padding(
@@ -103,7 +103,7 @@ class RenoteModalSheetState extends ConsumerState<RenoteModalSheet> {
                     visibility: visibility,
                   ));
               scaffoldMessenger
-                  .showSnackBar(const SnackBar(content: Text("Renoteしました。")));
+                  .showSnackBar(const SnackBar(content: Text("Renoteしました。"), behavior: SnackBarBehavior.floating, margin: EdgeInsetsDirectional.symmetric(vertical: 80)));
               navigator.pop();
             }.expectFailure(context),
             title: const Padding(
@@ -162,7 +162,7 @@ class RenoteModalSheetState extends ConsumerState<RenoteModalSheet> {
                       ));
 
                   scaffoldMessenger.showSnackBar(
-                      const SnackBar(content: Text("Renoteしました。")));
+                      const SnackBar(content: Text("Renoteしました。"), behavior: SnackBarBehavior.floating, margin: EdgeInsetsDirectional.symmetric(vertical: 80)));
                   navigator.pop();
                 }
               }.expectFailure(context),
