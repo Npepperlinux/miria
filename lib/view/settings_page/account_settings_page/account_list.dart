@@ -8,6 +8,7 @@ import 'package:miria/model/account.dart';
 import 'package:miria/providers.dart';
 import 'package:miria/router/app_router.dart';
 import 'package:miria/view/common/avatar_icon.dart';
+import 'package:miria/view/common/misskey_notes/mfm_text.dart';
 
 @RoutePage()
 class AccountListPage extends ConsumerWidget {
@@ -84,7 +85,7 @@ class AccountListItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       leading: AvatarIcon.fromIResponse(account.i),
-      title: Text(
+      title: SimpleMfmText(
         account.i.name ?? account.i.username,
         style: Theme.of(context).textTheme.titleMedium,
       ),

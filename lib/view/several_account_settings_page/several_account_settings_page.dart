@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:miria/model/account.dart';
 import 'package:miria/router/app_router.dart';
+import 'package:miria/view/common/misskey_notes/mfm_text.dart';
 import 'package:miria/view/several_account_settings_page/word_mute_page/word_mute_page.dart';
 
 @RoutePage()
@@ -15,7 +16,7 @@ class SeveralAccountSettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: SimpleMfmText(
           S.of(context).accountSetting(account.i.name ?? account.i.username),
         ),
       ),
