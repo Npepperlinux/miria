@@ -3,35 +3,35 @@ title: Miria
 type: app
 summary: Misskey Client App # 79文字まで
 description: |
-  **注意: インストール後に`password-manager-service`のアクセスを許可してください。**
+  **NOTE: Allow access to `password-manager-service` after installation.**
 
   ```
   $ snap connect miria:password-manager-service
   ```
 
-  Miriaは分散型SNS「[Misskey](https://misskey-hub.net)」のクライアントアプリです。
+  Miria is Misskey Client App for iOS, Android and many targets which made by Flutter.
 
-  機能
+  Miria includes these features.
 
-  * タイムラインの閲覧やノートの投稿、「アンテナ」「チャンネル」「みつける」などの基本的な機能を利用することができます。
-  * 複数アカウント、複数サーバーに対応しています。
-  * MFMに対応しています。
-  * タブにカスタム絵文字を設定することができます。
-  * リアクションピッカーの精度が高く、ひらがなでも検索しやすくなっています。
-  * 投稿欄でMFMの入力補完をすることができ、MFMの構文やカスタム絵文字をスムーズに入力することができます。
-  * 配色を複数のパターンから切り替えることができます。
-
-  制限事項
-
-  * このアプリでは新規登録およびアカウント削除の機能を提供していません。新規登録や削除が必要な場合、登録や削除に必要な要件をそれぞれのサーバーへご確認ください。
-  * このアプリではサーバーを提供していません。このアプリと一緒に特定のサーバーを付随して提供していないので、このアプリ単独で利用することはできません。
-  * このアプリはMisskey v12以前のバージョンやFirefishなどの派生したアプリケーションに対応していません。
-  * モバイル向けに開発されたアプリであるため、一部機能はデスクトップで動作しません。
+  - Login, Logout, Management multiple servers and accounts
+  - Show home, local, hybrid(social), global timelines, list, antenna and channel
+  - Show note with MFM (Completely Supported).
+  - Note, Renote, Quoted renote, renote to any channel
+  - Reaction
+  - Show Notifications
+  - Edit antenna and list
+  - Explore
+  - Announcements
+  - Favorite
+  - Search notes and users
+  - Page (show only)
+  - Show Server Information (online users, job queue, ads, custom emojis)
 license: AGPL-3.0
 website: https://shiosyakeyakini.info/miria_web
 source-code: https://github.com/shiosyakeyakini-info/miria
 issues: https://github.com/shiosyakeyakini-info/miria/issues
 donation: https://shiosyakeyakini.fanbox.cc
+contact: sorairo@shiosyakeyakini.info
 icon: assets/images/icon.png
 adopt-info: miria
 base: core22
