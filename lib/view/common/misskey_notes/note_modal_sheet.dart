@@ -342,7 +342,7 @@ class NoteModalSheet extends ConsumerWidget {
                   account: account,
                   targetUser: targetNote.user,
                   defaultText:
-                      "Note:\nhttps://${account.host}/notes/${targetNote.id}\n-----",
+                      "Note:\nhttps://${account.host}/notes/${targetNote.id}\n-----\n",
                 ),
               );
             },
