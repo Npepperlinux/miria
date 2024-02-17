@@ -112,7 +112,7 @@ class CommonDrawer extends ConsumerWidget {
                     ),
                     ListTile(
                       leading: const Icon(Icons.settings),
-                      title: Text(S.of(context).accountSetting(
+                      title: SimpleMfmText(S.of(context).accountSetting(
                           account.i.name ?? account.i.username)),
                       onTap: () {
                         Navigator.of(context).pop();
