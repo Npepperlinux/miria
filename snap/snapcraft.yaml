@@ -81,14 +81,11 @@ parts:
     source: .
     after: [flutter-git]
     plugin: nil
-    override-pull: |
-      craftctl default
-      craftctl set version=$(cat pubspec.yaml | grep "version[:]" | cut -d ' ' -f 2)
     build-packages:
       - libmpv-dev
       - libsecret-1-dev
     build-environment:
-      - LD_LIBRARY_PATH: $SNAPCRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/gnome-42-2204-sdk/current/lib/$CRAFT_ARCH_TRIPLET:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/gnome-42-2204-sdk/current/usr/lib:/snap/gnome-42-2204-sdk/current/usr/lib/vala-current:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/pulseaudio${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+      - LD_LIBRARY_PATH: $SNAPCRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/gnome-42-2204-sdk/current/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/gnome-42-2204-sdk/current/usr/lib:/snap/gnome-42-2204-sdk/current/usr/lib/vala-current:/snap/gnome-42-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/usr/share/miria
       mkdir -p $CRAFT_PART_INSTALL/meta/gui
@@ -98,6 +95,7 @@ parts:
       flutter build linux --release
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/usr/share/miria/
       cp macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png $CRAFT_PART_INSTALL/meta/gui/miria.png
+      craftctl set version=$(flutter pub run cider version)
 
   deps:
     # https://github.com/ubuntu-flutter-community/musicpod/blob/ace85f0a85f9d3f191c98c54276a29b2f32f51b0/snap/snapcraft.yaml#L100C1-L209C36
