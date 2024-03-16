@@ -804,6 +804,7 @@
     "emojiTapReaction": "ノート内の絵文字タップでリアクションする",
     "emojiTapReactionDescription": "ノート内の絵文字をタップしてリアクションします。MFMや外部サーバーの絵文字の場合うまく機能しないことがあります。",
     "emojiStyle": "絵文字のスタイル",
+    "font": "フォント",
     "fontStandard": "フォント（標準）",
     "fontSerif": "フォント（$[font.serif 用）",
     "fontMonospace": "フォント （$[font.monospace やコードブロック 用）",

@@ -124,10 +124,16 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        S.of(context).general,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.settings),
+                            const SizedBox(width: 15),
+                            Text(
+                              S.of(context).general,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ]),
                       const Padding(padding: EdgeInsets.only(top: 10)),
                       Text(S.of(context).language),
                       DropdownButton<Languages>(
@@ -248,10 +254,16 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        S.of(context).theme,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.style),
+                            const SizedBox(width: 15),
+                            Text(
+                              S.of(context).theme,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ]),
                       const Padding(padding: EdgeInsets.only(top: 10)),
                       Text(S.of(context).themeForLightMode),
                       DropdownButton<String>(
@@ -316,10 +328,16 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        S.of(context).reaction,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.add_reaction),
+                            const SizedBox(width: 15),
+                            Text(
+                              S.of(context).reaction,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ]),
                       CheckboxListTile(
                         value: enableDirectReaction,
                         title: Text(S.of(context).emojiTapReaction),
@@ -363,6 +381,16 @@ class GeneralSettingsPageState extends ConsumerState<GeneralSettingsPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.text_format),
+                            const SizedBox(width: 15),
+                            Text(
+                              S.of(context).font,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ]),
                       Text(
                         S.of(context).fontSize,
                         style: Theme.of(context).textTheme.titleSmall,
