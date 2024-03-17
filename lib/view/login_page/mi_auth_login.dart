@@ -8,6 +8,7 @@ import 'package:miria/view/login_page/centraing_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:miria/view/login_page/misskey_server_list_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:punycode/punycode.dart';
 
 class MiAuthLogin extends ConsumerStatefulWidget {
   const MiAuthLogin({super.key});
@@ -88,7 +89,7 @@ class MiAuthLoginState extends ConsumerState<MiAuthLogin> {
                 onPressed: () {
                   ref
                       .read(accountRepositoryProvider.notifier)
-                      .openMiAuth(serverController.text)
+                      .openMiAuth(punycodeEncode(serverController.text))
                       .expectFailure(context);
                   setState(() {
                     isAuthed = true;
