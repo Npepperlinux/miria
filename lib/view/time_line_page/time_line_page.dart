@@ -361,7 +361,7 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                   ),
                   IconButton(
                     onPressed: note.expectFailure(context),
-                    icon: const Icon(Icons.edit),
+                    icon: const Icon(Icons.send),
                   ),
                   IconButton(
                     onPressed: noteCreateRoute,
