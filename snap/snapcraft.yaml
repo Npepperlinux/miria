@@ -273,7 +273,7 @@ parts:
         rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
       done
       find $SNAPCRAFT_PRIME/usr/share -type d -empty -delete
-  lint:
-    ignore:
-      - library:
-        - usr/share/miria/lib/libmedia_kit_native_event_loop.so
+lint:
+  ignore:
+    - library:
+      - usr/share/miria/lib/libmedia_kit_native_event_loop.so
