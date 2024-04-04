@@ -7,6 +7,7 @@ import 'package:miria/view/common/account_scope.dart';
 import 'package:miria/view/common/error_detail.dart';
 import 'package:miria/view/common/misskey_notes/mfm_text.dart';
 import 'package:misskey_dart/misskey_dart.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final _notesTranslateProvider = FutureProvider.family<NotesTranslateResponse,
     ({Account account, String noteId, String targetLang})>((ref, arg) async {
@@ -47,12 +48,12 @@ class TranslateNoteModalSheet extends ConsumerWidget {
           child: Column(
             children: [
               ListTile(
-                title: Text("${translatedNote.sourceLang}から翻訳"),
+                title: Text(S.of(context).translatedFrom(translatedNote.sourceLang)),
                 trailing: IconButton(
                   onPressed: () => Clipboard.setData(
                     ClipboardData(text: translatedNote.text),
                   ),
-                  tooltip: "コピー",
+                  tooltip: Text(S.of(context).copyContents).toString(),
                   icon: const Icon(Icons.copy),
                 ),
               ),

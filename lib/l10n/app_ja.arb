@@ -276,6 +276,7 @@
     "quotedRenoteInChannel": "チャンネルへ引用Renote",
     "quotedRenoteInOtherChannel": "よそのチャンネルへRenote",
     "renotedUsers": "Renoteしたユーザー",
+    "translatedFrom": "{sourceLanguage}から翻訳",
     "otherComplementReactions": "他のん",
     "openAsOtherAccount": "開くアカウントを選んでや",
     "pickColor": "色を選んでや",
