@@ -50,9 +50,14 @@ class TranslateNoteModalSheet extends ConsumerWidget {
               ListTile(
                 title: Text(S.of(context).translatedFrom(translatedNote.sourceLang)),
                 trailing: IconButton(
-                  onPressed: () => Clipboard.setData(
-                    ClipboardData(text: translatedNote.text),
-                  ),
+                  onPressed: () {
+                    Clipboard.setData(
+                      ClipboardData(text: translatedNote.text),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(S.of(context).doneCopy), duration: const Duration(seconds: 1))
+                    );
+                  },
                   tooltip: Text(S.of(context).copyContents).toString(),
                   icon: const Icon(Icons.copy),
                 ),
