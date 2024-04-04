@@ -22,6 +22,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final noteModalSheetSharingModeProviding = StateProvider((ref) => false);
 
@@ -46,7 +47,7 @@ class NoteModalSheet extends ConsumerWidget {
       children: [
         ListTile(
           leading: const Icon(Icons.info_outline),
-          title: const Text("詳細"),
+          title: Text(S.of(context).detail),
           onTap: () {
             context
                 .pushRoute(NoteDetailRoute(note: targetNote, account: account));
@@ -54,15 +55,18 @@ class NoteModalSheet extends ConsumerWidget {
         ),
         ListTile(
           leading: const Icon(Icons.copy),
-          title: const Text("内容をコピー"),
+          title: Text(S.of(context).copyContents),
           onTap: () {
             Clipboard.setData(ClipboardData(text: targetNote.text ?? ""));
             Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(S.of(context).doneCopy), duration: const Duration(seconds: 1)),
+            );
           },
         ),
         ListTile(
           leading: const Icon(Icons.link),
-          title: const Text("リンクをコピー"),
+          title: Text(S.of(context).copyLinks),
           onTap: () {
             Clipboard.setData(
               ClipboardData(
@@ -70,11 +74,14 @@ class NoteModalSheet extends ConsumerWidget {
               ),
             );
             Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(S.of(context).doneCopy), duration: const Duration(seconds: 1)),
+            );
           },
         ),
         ListTile(
           leading: const Icon(Icons.person),
-          title: const Text("ユーザー"),
+          title: Text(S.of(context).user),
           trailing: const Icon(Icons.keyboard_arrow_right),
           onTap: () async {
             final response = await ref
@@ -87,15 +94,13 @@ class NoteModalSheet extends ConsumerWidget {
               builder: (context) => UserControlDialog(
                 account: account,
                 response: response,
-                isMe: targetNote.user.host == null &&
-                    targetNote.user.username == account.userId,
               ),
             );
           },
         ),
         ListTile(
           leading: const Icon(Icons.open_in_browser),
-          title: const Text("ブラウザで開く"),
+          title: Text(S.of(context).openBrowsers),
           onTap: () async {
             launchUrlString(
               "https://${account.host}/notes/${targetNote.id}",
@@ -108,7 +113,7 @@ class NoteModalSheet extends ConsumerWidget {
         if (targetNote.user.host != null)
           ListTile(
             leading: const Icon(Icons.rocket_launch),
-            title: const Text("ブラウザでリモート先を開く"),
+            title: Text(S.of(context).openBrowsersAsRemote),
             onTap: () async {
               final uri = targetNote.url ?? targetNote.uri;
               if (uri == null) return;
@@ -122,7 +127,7 @@ class NoteModalSheet extends ConsumerWidget {
             accounts.where((e) => e.host == account.host).length > 1)
           ListTile(
             leading: const Icon(Icons.open_in_new),
-            title: const Text("別のアカウントで開く"),
+            title: Text(S.of(context).openInAnotherAccount),
             onTap: () => ref
                 .read(misskeyNoteNotifierProvider(account).notifier)
                 .openNoteInOtherAccount(context, targetNote)
@@ -130,7 +135,7 @@ class NoteModalSheet extends ConsumerWidget {
           ),
         ListTile(
           leading: const Icon(Icons.share),
-          title: const Text("ノートを共有"),
+          title: Text(S.of(context).shareNotes),
           onTap: () {
             ref.read(noteModalSheetSharingModeProviding.notifier).state = true;
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -220,13 +225,15 @@ class NoteModalSheet extends ConsumerWidget {
                         Navigator.of(context).pop();
                       }
                     },
-                    title: Text(data.isFavorited ? "お気に入り解除" : "お気に入り"),
+                    title: Text(data.isFavorited
+                        ? S.of(context).deleteFavorite
+                        : S.of(context).favorite),
                   );
           },
         ),
         ListTile(
           leading: const Icon(Icons.attach_file),
-          title: const Text("クリップ"),
+          title: Text(S.of(context).clip),
           onTap: () {
             Navigator.of(context).pop();
 
@@ -239,7 +246,7 @@ class NoteModalSheet extends ConsumerWidget {
         ),
         ListTile(
           leading: const Icon(Icons.repeat_rounded),
-          title: const Text("リノートの直後のノート"),
+          title: Text(S.of(context).notesAfterRenote),
           onTap: () {
             context.pushRoute(
               NotesAfterRenoteRoute(
@@ -258,7 +265,7 @@ class NoteModalSheet extends ConsumerWidget {
           if (account.i.policies.canEditNote)
             ListTile(
               leading: const Icon(Icons.edit),
-              title: const Text("編集する"),
+              title: Text(S.of(context).edit),
               onTap: () async {
                 Navigator.of(context).pop();
                 context.pushRoute(
@@ -272,14 +279,14 @@ class NoteModalSheet extends ConsumerWidget {
             ),
           ListTile(
             leading: const Icon(Icons.delete),
-            title: const Text("削除する"),
+            title: Text(S.of(context).delete),
             onTap: () async {
               if (await showDialog(
                     context: context,
-                    builder: (context) => const SimpleConfirmDialog(
-                      message: "ほんまに消してええな？",
-                      primary: "消す！",
-                      secondary: "消さへん",
+                    builder: (context) => SimpleConfirmDialog(
+                      message: S.of(context).confirmDelete,
+                      primary: S.of(context).doDeleting,
+                      secondary: S.of(context).cancel,
                     ),
                   ) ==
                   true) {
@@ -295,14 +302,14 @@ class NoteModalSheet extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.edit_outlined),
-            title: const Text("削除してなおす"),
+            title: Text(S.of(context).deletedRecreate),
             onTap: () async {
               if (await showDialog(
                     context: context,
-                    builder: (context) => const SimpleConfirmDialog(
-                      message: "このノート消してなおす？ついたリアクション、Renote、返信は消えて戻らへんで？",
-                      primary: "消す！",
-                      secondary: "消さへん",
+                    builder: (context) => SimpleConfirmDialog(
+                      message: S.of(context).confirmDeletedRecreate,
+                      primary: S.of(context).doDeleting,
+                      secondary: S.of(context).cancel,
                     ),
                   ) ==
                   true) {
@@ -331,7 +338,7 @@ class NoteModalSheet extends ConsumerWidget {
             baseNote.poll == null) ...[
           ListTile(
             leading: const Icon(Icons.delete),
-            title: const Text("リノートを解除する"),
+            title: Text(S.of(context).deleteRenote),
             onTap: () async {
               await ref
                   .read(misskeyProvider(account))
@@ -349,7 +356,7 @@ class NoteModalSheet extends ConsumerWidget {
                 baseNote.user.username != account.userId))
           ListTile(
             leading: const Icon(Icons.report),
-            title: const Text("通報する"),
+            title: Text(S.of(context).reportAbuse),
             onTap: () {
               Navigator.of(context).pop();
               showDialog(

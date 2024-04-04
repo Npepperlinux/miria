@@ -9,6 +9,7 @@ import 'package:miria/repository/account_repository.dart';
 import 'package:miria/repository/account_settings_repository.dart';
 import 'package:miria/repository/antenna_timeline_repository.dart';
 import 'package:miria/repository/channel_time_line_repository.dart';
+import 'package:miria/repository/desktop_settings_repository.dart';
 import 'package:miria/repository/emoji_repository.dart';
 import 'package:miria/repository/favorite_repository.dart';
 import 'package:miria/repository/general_settings_repository.dart';
@@ -20,6 +21,7 @@ import 'package:miria/repository/home_time_line_repository.dart';
 import 'package:miria/repository/local_time_line_repository.dart';
 import 'package:miria/repository/role_timeline_repository.dart';
 import 'package:miria/repository/note_repository.dart';
+import 'package:miria/repository/shared_preference_controller.dart';
 import 'package:miria/repository/tab_settings_repository.dart';
 import 'package:miria/repository/time_line_repository.dart';
 import 'package:miria/repository/user_list_time_line_repository.dart';
@@ -201,11 +203,13 @@ final notesProvider = ChangeNotifierProvider.family<NoteRepository, Account>(
 //TODO: アカウント毎である必要はない ホスト毎
 //TODO: のつもりだったけど、絵文字にロールが関係するようになるとアカウント毎になる
 final emojiRepositoryProvider = Provider.family<EmojiRepository, Account>(
-    (ref, account) => EmojiRepositoryImpl(
-        misskey: ref.read(misskeyProvider(account)),
-        account: account,
-        accountSettingsRepository:
-            ref.read(accountSettingsRepositoryProvider)));
+  (ref, account) => EmojiRepositoryImpl(
+    misskey: ref.read(misskeyProvider(account)),
+    account: account,
+    accountSettingsRepository: ref.read(accountSettingsRepositoryProvider),
+    sharePreferenceController: ref.read(sharedPrefenceControllerProvider),
+  ),
+);
 
 final accountRepositoryProvider =
     NotifierProvider<AccountRepository, List<Account>>(AccountRepository.new);
@@ -213,7 +217,7 @@ final accountRepositoryProvider =
 final accountsProvider =
     Provider<List<Account>>((ref) => ref.watch(accountRepositoryProvider));
 
-final iProvider = Provider.family<IResponse, Acct>((ref, acct) {
+final iProvider = Provider.family<MeDetailed, Acct>((ref, acct) {
   final accounts = ref.watch(accountsProvider);
   final account = accounts.firstWhere((account) => account.acct == acct);
   return account.i;
@@ -237,6 +241,9 @@ final accountSettingsRepositoryProvider =
 
 final generalSettingsRepositoryProvider =
     ChangeNotifierProvider((ref) => GeneralSettingsRepository());
+
+final desktopSettingsRepositoryProvider =
+    ChangeNotifierProvider((ref) => DesktopSettingsRepository());
 
 final errorEventProvider =
     StateProvider<(Object? error, BuildContext? context)>(
