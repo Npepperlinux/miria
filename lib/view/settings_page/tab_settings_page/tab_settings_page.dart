@@ -148,7 +148,7 @@ class TabSettingsAddDialogState extends ConsumerState<TabSettingsPage> {
                   if (!mounted) return;
                   Navigator.of(context).pop();
                 },
-                icon: const Icon(Icons.delete_outline_outlined))
+                icon: const Icon(Icons.delete_outline))
         ],
       ),
       body: SingleChildScrollView(

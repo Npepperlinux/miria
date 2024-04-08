@@ -28,19 +28,19 @@ class ReactionAcceptanceDialog extends StatelessWidget {
         ListTile(
           onTap: () =>
               Navigator.of(context).pop(ReactionAcceptance.likeOnlyForRemote),
-          leading: const Icon(Icons.add_reaction_outlined),
+          leading: const Icon(Icons.add_reaction),
           title: Text(S.of(context).favoriteLikeOnlyForRemote),
         ),
         ListTile(
           onTap: () =>
               Navigator.of(context).pop(ReactionAcceptance.nonSensitiveOnly),
-          leading: const Icon(Icons.shield_outlined),
+          leading: const Icon(Icons.shield),
           title: Text(S.of(context).favoriteNonSensitiveOnly),
         ),
         ListTile(
           onTap: () => Navigator.of(context).pop(
               ReactionAcceptance.nonSensitiveOnlyForLocalLikeOnlyForRemote),
-          leading: const Icon(Icons.add_moderator_outlined),
+          leading: const Icon(Icons.add_moderator),
           title:
               Text(S.of(context).favoriteNonSensitiveOnlyAndLikeOnlyForRemote),
         )

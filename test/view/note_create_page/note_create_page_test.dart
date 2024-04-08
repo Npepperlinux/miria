@@ -1643,15 +1643,15 @@ void main() {
       final testCases = {
         "全て": (find.byType(SvgPicture), null),
         "全て（リモートはいいねのみ）": (
-          find.byIcon(Icons.add_reaction_outlined),
+          find.byIcon(Icons.add_reaction),
           ReactionAcceptance.likeOnlyForRemote
         ),
         "非センシティブのみ": (
-          find.byIcon(Icons.shield_outlined),
+          find.byIcon(Icons.shield),
           ReactionAcceptance.nonSensitiveOnly
         ),
         "非センシティブのみ（リモートはいいねのみ）": (
-          find.byIcon(Icons.add_moderator_outlined),
+          find.byIcon(Icons.add_moderator),
           ReactionAcceptance.nonSensitiveOnlyForLocalLikeOnlyForRemote
         ),
         "いいねのみ": (
@@ -2571,7 +2571,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // TODO: Material3にしたときにこっちにする
-        // await tester.tap(find.byIcon(Icons.edit_outlined));
+        // await tester.tap(find.byIcon(Icons.edit));
         await tester.tap(find.byIcon(Icons.edit));
         await tester.pumpAndSettle();
 
@@ -2580,7 +2580,7 @@ void main() {
         await tester.tap(find.text("OK"));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byIcon(Icons.keyboard_outlined));
+        await tester.tap(find.byIcon(Icons.keyboard));
         await tester.pumpAndSettle();
 
         await tester.enterText(find.byType(TextField).hitTestable().at(0), "3");
@@ -2642,7 +2642,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // TODO: Material3にしたときにこっちにする
-        // await tester.tap(find.byIcon(Icons.edit_outlined));
+        // await tester.tap(find.byIcon(Icons.edit));
         await tester.tap(find.byIcon(Icons.edit));
         await tester.pumpAndSettle();
 
@@ -2651,7 +2651,7 @@ void main() {
         await tester.tap(find.text("OK"));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byIcon(Icons.keyboard_outlined));
+        await tester.tap(find.byIcon(Icons.keyboard));
         await tester.pumpAndSettle();
 
         await tester.enterText(find.byType(TextField).hitTestable().at(0), "3");

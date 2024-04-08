@@ -38,11 +38,11 @@ class NoteCreateSettingTop extends ConsumerWidget {
       case ReactionAcceptance.likeOnly:
         return const Icon(Icons.favorite_border);
       case ReactionAcceptance.likeOnlyForRemote:
-        return const Icon(Icons.add_reaction_outlined);
+        return const Icon(Icons.add_reaction);
       case ReactionAcceptance.nonSensitiveOnly:
-        return const Icon(Icons.shield_outlined);
+        return const Icon(Icons.shield);
       case ReactionAcceptance.nonSensitiveOnlyForLocalLikeOnlyForRemote:
-        return const Icon(Icons.add_moderator_outlined);
+        return const Icon(Icons.add_moderator);
     }
   }
 

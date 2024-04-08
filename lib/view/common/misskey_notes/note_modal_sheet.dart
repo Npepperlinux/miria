@@ -284,7 +284,7 @@ class NoteModalSheet extends ConsumerWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.edit_outlined),
+            leading: const Icon(Icons.edit),
             title: Text(S.of(context).deletedRecreate),
             onTap: () async {
               if (await showDialog(

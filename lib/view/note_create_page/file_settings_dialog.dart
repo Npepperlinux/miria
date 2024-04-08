@@ -67,7 +67,7 @@ class FileSettingsDialogState extends ConsumerState<FileSettingsDialog> {
               TextField(
                 controller: fileNameController,
                 decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.badge_outlined)),
+                    prefixIcon: Icon(Icons.badge)),
               ),
               TextButton(
                   onPressed: () {
@@ -95,7 +95,7 @@ class FileSettingsDialogState extends ConsumerState<FileSettingsDialog> {
                 maxLines: null,
                 minLines: 5,
                 decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.subtitles_outlined)),
+                    prefixIcon: Icon(Icons.subtitles)),
               ),
             ],
           ),

@@ -284,7 +284,7 @@ class MisskeyImageState extends ConsumerState<MisskeyImage> {
                                 Uri.parse(widget.targetFiles[widget.position]),
                                 mode: LaunchMode.externalApplication);
                           },
-                          icon: const Icon(Icons.file_download_outlined),
+                          icon: const Icon(Icons.file_download),
                           label: Text(widget.name));
                     }
 

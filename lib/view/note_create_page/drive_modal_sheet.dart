@@ -19,7 +19,7 @@ class DriveModalSheet extends StatelessWidget {
         ),
         ListTile(
           title: Text(S.of(context).fromDrive),
-          leading: const Icon(Icons.cloud_outlined),
+          leading: const Icon(Icons.cloud),
           onTap: () {
             Navigator.of(context).pop(DriveModalSheetReturnValue.drive);
           },

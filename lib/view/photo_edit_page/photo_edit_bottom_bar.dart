@@ -37,13 +37,13 @@ class PhotoEditBottomBar extends ConsumerWidget {
                     : null),
             child: IconButton(
                 onPressed: () => photoEdit.colorFilter(),
-                icon: const Icon(Icons.palette_outlined, color: Colors.white)),
+                icon: const Icon(Icons.palette, color: Colors.white)),
           ),
           IconButton(
               onPressed: () =>
                   photoEdit.addReaction(AccountScope.of(context), context),
               icon:
-                  const Icon(Icons.add_reaction_outlined, color: Colors.white)),
+                  const Icon(Icons.add_reaction, color: Colors.white)),
         ],
       ),
     );

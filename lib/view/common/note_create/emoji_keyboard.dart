@@ -119,7 +119,7 @@ class EmojiKeyboard extends ConsumerWidget {
               insertEmoji(selected, ref);
             }
           },
-          icon: const Icon(Icons.add_reaction_outlined),
+          icon: const Icon(Icons.add_reaction),
           label: Text(S.of(context).otherComplementReactions),
         ),
       ],

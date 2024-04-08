@@ -286,7 +286,7 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                           ),
                         );
                       },
-                      icon: const Icon(Icons.smart_toy_outlined),
+                      icon: const Icon(Icons.smart_toy),
                     ),
                   ],
                   const Padding(
