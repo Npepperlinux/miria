@@ -1529,7 +1529,7 @@ void main() {
       final testCases = {
         "パブリック": (Icons.public, NoteVisibility.public),
         "ホーム": (Icons.home, NoteVisibility.home),
-        "フォロワー": (Icons.lock_outline, NoteVisibility.followers),
+        "フォロワー": (Icons.lock, NoteVisibility.followers),
         "ダイレクト": (Icons.mail, NoteVisibility.specified)
       };
 
@@ -1620,7 +1620,7 @@ void main() {
 
         await tester.enterText(find.byType(TextField).at(0), ":ai_yay:");
 
-        await tester.tap(find.byIcon(Icons.lock_outline));
+        await tester.tap(find.byIcon(Icons.lock));
         await tester.pumpAndSettle();
         await tester.tap(find.byIcon(Icons.public).hitTestable());
         await tester.pumpAndSettle();
@@ -2008,7 +2008,7 @@ void main() {
                     NoteCreateRoute(initialAccount: TestData.account))));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byIcon(Icons.mail_outline));
+        await tester.tap(find.byIcon(Icons.mail));
         await tester.pumpAndSettle();
 
         await tester.enterText(find.byType(TextField).hitTestable(), "おいしいbot");
@@ -2051,7 +2051,7 @@ void main() {
                     NoteCreateRoute(initialAccount: TestData.account))));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byIcon(Icons.mail_outline));
+        await tester.tap(find.byIcon(Icons.mail));
         await tester.pumpAndSettle();
 
         // 1人目
@@ -2064,7 +2064,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // 2人目
-        await tester.tap(find.byIcon(Icons.mail_outline));
+        await tester.tap(find.byIcon(Icons.mail));
         await tester.pumpAndSettle();
 
         await tester.enterText(find.byType(TextField).hitTestable(), "藍");
@@ -2104,7 +2104,7 @@ void main() {
                     NoteCreateRoute(initialAccount: TestData.account))));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byIcon(Icons.mail_outline));
+        await tester.tap(find.byIcon(Icons.mail));
         await tester.pumpAndSettle();
 
         await tester.enterText(find.byType(TextField).hitTestable(), "おいしいbot");

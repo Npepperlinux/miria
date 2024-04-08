@@ -218,7 +218,7 @@ class NoteCreatePageState extends ConsumerState<NoteCreatePage> {
                               NoteCreationMode.update)
                             IconButton(
                                 onPressed: () => notifier.addReplyUser(context),
-                                icon: const Icon(Icons.mail_outline)),
+                                icon: const Icon(Icons.mail)),
                           IconButton(
                               onPressed: () async {
                                 final selectedEmoji =

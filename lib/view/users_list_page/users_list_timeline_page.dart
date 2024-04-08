@@ -21,7 +21,7 @@ class UsersListTimelinePage extends ConsumerWidget {
         title: Text(list.name ?? ""),
         actions: [
           IconButton(
-            icon: const Icon(Icons.info_outline),
+            icon: const Icon(Icons.info),
             onPressed: () => context.pushRoute(
               UsersListDetailRoute(
                 account: account,

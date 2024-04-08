@@ -41,7 +41,7 @@ class NoteVisibilityDialog extends ConsumerWidget {
           onTap: () {
             Navigator.of(context).pop(NoteVisibility.followers);
           },
-          leading: const Icon(Icons.lock_outline),
+          leading: const Icon(Icons.lock),
           title: Text(S.of(context).follower),
           subtitle: Text(S.of(context).followersSubTitle),
         ),

@@ -45,7 +45,7 @@ class NoteModalSheet extends ConsumerWidget {
     return ListView(
       children: [
         ListTile(
-          leading: const Icon(Icons.info_outline),
+          leading: const Icon(Icons.info),
           title: Text(S.of(context).detail),
           onTap: () {
             context
