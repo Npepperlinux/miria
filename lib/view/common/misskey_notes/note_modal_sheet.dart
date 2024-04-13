@@ -48,6 +48,7 @@ class NoteModalSheet extends ConsumerWidget {
           leading: const Icon(Icons.info_outline),
           title: Text(S.of(context).detail),
           onTap: () {
+            Navigator.of(context).pop();
             context
                 .pushRoute(NoteDetailRoute(note: targetNote, account: account));
           },
@@ -105,7 +106,6 @@ class NoteModalSheet extends ConsumerWidget {
               "https://${account.host}/notes/${targetNote.id}",
               mode: LaunchMode.inAppWebView,
             );
-
             Navigator.of(context).pop();
           },
         ),
@@ -117,7 +117,6 @@ class NoteModalSheet extends ConsumerWidget {
               final uri = targetNote.url ?? targetNote.uri;
               if (uri == null) return;
               launchUrl(uri, mode: LaunchMode.inAppWebView);
-
               Navigator.of(context).pop();
             },
           ),
@@ -149,7 +148,6 @@ class NoteModalSheet extends ConsumerWidget {
                     await image.toByteData(format: ImageByteFormat.png);
                 ref.read(noteModalSheetSharingModeProviding.notifier).state =
                     false;
-
                 final path =
                     "${(await getApplicationDocumentsDirectory()).path}${separator}share.png";
                 final file = File(path);
@@ -169,6 +167,7 @@ class NoteModalSheet extends ConsumerWidget {
                 );
               });
             });
+          Navigator.of(context).pop();
           },
         ),
         FutureBuilder(
@@ -219,7 +218,6 @@ class NoteModalSheet extends ConsumerWidget {
           title: Text(S.of(context).clip),
           onTap: () {
             Navigator.of(context).pop();
-
             showModalBottomSheet(
               context: context,
               builder: (context2) =>
@@ -231,6 +229,7 @@ class NoteModalSheet extends ConsumerWidget {
           leading: const Icon(Icons.repeat_rounded),
           title: Text(S.of(context).notesAfterRenote),
           onTap: () {
+            Navigator.of(context).pop();
             context.pushRoute(
               NotesAfterRenoteRoute(
                 note: targetNote,
