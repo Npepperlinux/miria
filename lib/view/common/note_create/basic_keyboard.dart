@@ -21,19 +21,18 @@ class BasicKeyboard extends StatelessWidget {
       children: [
         CustomKeyboardButton(
           keyboard: ":",
-          displayText: "：",
           controller: controller,
           focusNode: focusNode,
         ),
         CustomKeyboardButton(
           keyboard: "#",
-          displayText: "＃",
           controller: controller,
           focusNode: focusNode,
         ),
         CustomKeyboardButton(
           keyboard: r"$[",
           afterInsert: "]",
+          displayText: r"$[]",
           controller: controller,
           focusNode: focusNode,
         ),
@@ -51,7 +50,6 @@ class BasicKeyboard extends StatelessWidget {
         ),
         CustomKeyboardButton(
           keyboard: "@",
-          displayText: "＠",
           controller: controller,
           focusNode: focusNode,
         ),
@@ -75,7 +73,6 @@ class BasicKeyboard extends StatelessWidget {
         ),
         CustomKeyboardButton(
           keyboard: "> ",
-          displayText: "＞",
           controller: controller,
           focusNode: focusNode,
         ),
@@ -88,7 +85,6 @@ class BasicKeyboard extends StatelessWidget {
         CustomKeyboardButton(
           keyboard: "`",
           afterInsert: "`",
-          displayText: "｀",
           controller: controller,
           focusNode: focusNode,
         ),
