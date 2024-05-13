@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:miria/model/account.dart';
 import 'package:miria/model/account_settings.dart';
 import 'package:miria/model/acct.dart';
-import 'package:shared_preference_app_group/shared_preference_app_group.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountSettingsRepository extends ChangeNotifier {
@@ -13,27 +12,10 @@ class AccountSettingsRepository extends ChangeNotifier {
   Iterable<AccountSettings> get accountSettings => _accountSettings;
 
   Future<void> load() async {
-    if (defaultTargetPlatform == TargetPlatform.iOS) {
-      await SharedPreferenceAppGroup.setAppGroup(
-          "group.info.shiosyakeyakini.miria");
-      final key = await SharedPreferenceAppGroup.get("account_settings");
-      print(key);
-    }
-
     final prefs = await SharedPreferences.getInstance();
-    var storedData = prefs.getString("account_settings");
+    final storedData = prefs.getString("account_settings");
     if (storedData == null || storedData.isEmpty) {
-      if (defaultTargetPlatform != TargetPlatform.iOS) {
-        return;
-      }
-      final key = await SharedPreferenceAppGroup.get("account_settings");
-      if (key is String) {
-        storedData = key;
-      } else {
-        return;
-      }
-    } else {
-      await SharedPreferenceAppGroup.setString("account_settings", storedData);
+      return;
     }
     try {
       _accountSettings
@@ -55,12 +37,9 @@ class AccountSettingsRepository extends ChangeNotifier {
 
   Future<void> _saveAsList(List<AccountSettings> settings) async {
     final prefs = await SharedPreferences.getInstance();
-    final value = jsonEncode(settings.map((e) => e.toJson()).toList());
-    await prefs.setString("account_settings", value);
+    await prefs.setString("account_settings",
+        jsonEncode(settings.map((e) => e.toJson()).toList()));
     notifyListeners();
-    if (defaultTargetPlatform == TargetPlatform.iOS) {
-      SharedPreferenceAppGroup.setString("account_settings", value);
-    }
   }
 
   Future<void> removeAccount(Account account) async {
