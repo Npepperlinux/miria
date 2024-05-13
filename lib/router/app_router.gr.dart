@@ -93,7 +93,6 @@ abstract class _$AppRouter extends RootStackRouter {
           initialAccount: args.initialAccount,
           initialText: args.initialText,
           initialMediaFiles: args.initialMediaFiles,
-          exitOnNoted: args.exitOnNoted,
           channel: args.channel,
           reply: args.reply,
           renote: args.renote,
@@ -716,7 +715,6 @@ class NoteCreateRoute extends PageRouteInfo<NoteCreateRouteArgs> {
     required Account initialAccount,
     String? initialText,
     List<String>? initialMediaFiles,
-    bool exitOnNoted = false,
     CommunityChannel? channel,
     Note? reply,
     Note? renote,
@@ -730,7 +728,6 @@ class NoteCreateRoute extends PageRouteInfo<NoteCreateRouteArgs> {
             initialAccount: initialAccount,
             initialText: initialText,
             initialMediaFiles: initialMediaFiles,
-            exitOnNoted: exitOnNoted,
             channel: channel,
             reply: reply,
             renote: renote,
@@ -752,7 +749,6 @@ class NoteCreateRouteArgs {
     required this.initialAccount,
     this.initialText,
     this.initialMediaFiles,
-    this.exitOnNoted = false,
     this.channel,
     this.reply,
     this.renote,
@@ -768,8 +764,6 @@ class NoteCreateRouteArgs {
 
   final List<String>? initialMediaFiles;
 
-  final bool exitOnNoted;
-
   final CommunityChannel? channel;
 
   final Note? reply;
@@ -782,7 +776,7 @@ class NoteCreateRouteArgs {
 
   @override
   String toString() {
-    return 'NoteCreateRouteArgs{key: $key, initialAccount: $initialAccount, initialText: $initialText, initialMediaFiles: $initialMediaFiles, exitOnNoted: $exitOnNoted, channel: $channel, reply: $reply, renote: $renote, note: $note, noteCreationMode: $noteCreationMode}';
+    return 'NoteCreateRouteArgs{key: $key, initialAccount: $initialAccount, initialText: $initialText, initialMediaFiles: $initialMediaFiles, channel: $channel, reply: $reply, renote: $renote, note: $note, noteCreationMode: $noteCreationMode}';
   }
 }
 

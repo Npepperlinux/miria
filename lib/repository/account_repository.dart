@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:miria/model/account.dart';
@@ -10,7 +9,6 @@ import 'package:miria/model/account_settings.dart';
 import 'package:miria/model/acct.dart';
 import 'package:miria/providers.dart';
 import 'package:misskey_dart/misskey_dart.dart';
-import 'package:shared_preference_app_group/shared_preference_app_group.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 
@@ -59,24 +57,11 @@ class AccountRepository extends Notifier<List<Account>> {
 
   Future<void> load() async {
     const prefs = FlutterSecureStorage();
-    if (defaultTargetPlatform == TargetPlatform.iOS) {
-      await SharedPreferenceAppGroup.setAppGroup(
-          "group.info.shiosyakeyakini.miria");
-    }
-
-    String? storedData;
-
-    try {
-      storedData = await prefs.read(key: "accounts");
-    } on MissingPluginException catch (_) {
-      // app extension上ではプラグインを読んでない
-      storedData = await SharedPreferenceAppGroup.get("accounts") as String?;
-    }
+    final storedData = await prefs.read(key: "accounts");
     if (storedData == null) {
       return;
     }
     try {
-      SharedPreferenceAppGroup.setString("accounts", storedData);
       final list = (jsonDecode(storedData) as List);
       final resultList = List.of(list);
       for (final element in list) {
