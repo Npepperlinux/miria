@@ -24,13 +24,7 @@ class SharingAccountSelectPage extends ConsumerWidget {
         itemBuilder: (context, index) {
           final account = accounts[index];
           return ListTile(
-            onTap: () async {
-              if (defaultTargetPlatform == TargetPlatform.iOS) {
-                await ref
-                    .read(emojiRepositoryProvider(account))
-                    .loadFromLocalCache();
-              }
-              if (!context.mounted) return;
+            onTap: () {
               context.replaceRoute(
                 NoteCreateRoute(
                   initialAccount: account,

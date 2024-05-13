@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:miria/model/account.dart';
 import 'package:miria/model/account_settings.dart';
 import 'package:miria/model/acct.dart';
 import 'package:miria/providers.dart';
-import 'package:miria/repository/shared_preference_controller.dart';
 import 'package:misskey_dart/misskey_dart.dart';
 import 'package:shared_preference_app_group/shared_preference_app_group.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,11 +48,6 @@ class AlreadyLoggedInException implements ValidateMisskeyException {
 }
 
 class AccountRepository extends Notifier<List<Account>> {
-  late final SharedPreferenceController sharedPreferenceController =
-      ref.read(sharedPrefenceControllerProvider);
-
-  AccountRepository();
-
   final _validatedAccts = <Acct>{};
   final _validateMetaAccts = <Acct>{};
   String _sessionId = "";
@@ -62,16 +58,25 @@ class AccountRepository extends Notifier<List<Account>> {
   }
 
   Future<void> load() async {
+    const prefs = FlutterSecureStorage();
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       await SharedPreferenceAppGroup.setAppGroup(
           "group.info.shiosyakeyakini.miria");
     }
 
-    final String? storedData =
-        await sharedPreferenceController.getStringSecure("accounts");
-    if (storedData == null) return;
+    String? storedData;
 
     try {
+      storedData = await prefs.read(key: "accounts");
+    } on MissingPluginException catch (_) {
+      // app extension上ではプラグインを読んでない
+      storedData = await SharedPreferenceAppGroup.get("accounts") as String?;
+    }
+    if (storedData == null) {
+      return;
+    }
+    try {
+      SharedPreferenceAppGroup.setString("accounts", storedData);
       final list = (jsonDecode(storedData) as List);
       final resultList = List.of(list);
       for (final element in list) {
@@ -355,9 +360,10 @@ class AccountRepository extends Notifier<List<Account>> {
   }
 
   Future<void> _save() async {
-    await sharedPreferenceController.setStringSecure(
-      "accounts",
-      jsonEncode(state.map((e) => e.toJson()).toList()),
+    const prefs = FlutterSecureStorage();
+    await prefs.write(
+      key: "accounts",
+      value: jsonEncode(state.map((e) => e.toJson()).toList()),
     );
   }
 }
