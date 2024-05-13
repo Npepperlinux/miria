@@ -33,9 +33,7 @@ class AccountSettingsRepository extends ChangeNotifier {
         return;
       }
     } else {
-      if (defaultTargetPlatform == TargetPlatform.iOS) {
-        await SharedPreferenceAppGroup.setString("account_settings", storedData);
-      }
+      await SharedPreferenceAppGroup.setString("account_settings", storedData);
     }
     try {
       _accountSettings
