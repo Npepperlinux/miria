@@ -150,9 +150,9 @@ class RenoteModalSheetState extends ConsumerState<RenoteModalSheet> {
               navigator.pop();
             }.expectFailure(context),
             leading: const Icon(Icons.repeat),
-            title: const Padding(
-              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-              child: Text("Renote"),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              child: Text(S.of(context).renote),
             ),
             subtitle: Row(children: [
               Expanded(
@@ -273,7 +273,7 @@ class RenoteModalSheetState extends ConsumerState<RenoteModalSheet> {
               ),
               title: Text(widget.note.channel != null
                   ? S.of(context).quotedRenoteInOtherChannel
-                  : S.of(context).quotedRenoteInOtherChannel)),
+                  : S.of(context).quotedRenoteInChannel)),
         ]
       ],
     );

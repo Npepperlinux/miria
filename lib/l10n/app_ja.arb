@@ -274,7 +274,7 @@
     "renoteInChannel": "チャンネルへRenote",
     "renoteInOtherChannel": "よそのチャンネルへRenote",
     "quotedRenoteInChannel": "チャンネルへ引用Renote",
-    "quotedRenoteInOtherChannel": "よそのチャンネルへRenote",
+    "quotedRenoteInOtherChannel": "よそのチャンネルへ引用Renote",
     "renotedUsers": "Renoteしたユーザー",
     "translatedFrom": "{sourceLanguage}から翻訳",
     "otherComplementReactions": "他のん",
