@@ -372,12 +372,12 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                           child: const TimelineNoteField())),
                   IconButton(
                     onPressed: note.expectFailure(context),
-                    icon: const Icon(Icons.edit),
+                    icon: const Icon(Icons.send),
                   ),
                   IconButton(
                     onPressed: noteCreateRoute,
-                    icon: const Icon(Icons.keyboard_arrow_right),
-                  )
+                    icon: const Icon(Icons.edit_note),
+                  ),
                 ],
               ),
             ),
