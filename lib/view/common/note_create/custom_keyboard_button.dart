@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miria/extensions/text_editing_controller_extension.dart';
+import 'package:miria/view/common/note_create/link_text_input_dialog.dart';
 
 class CustomKeyboardButton extends StatelessWidget {
   final String keyboard;
@@ -20,7 +21,12 @@ class CustomKeyboardButton extends StatelessWidget {
   }) : displayText = displayText ?? keyboard;
 
   void insert() {
-    controller.insert(keyboard, afterText: afterInsert);
+    if(displayText == "[]()") {
+      final textAndUrl = const LinkTextInputDialog().toString();
+      controller.insert(textAndUrl);
+    } else {
+      controller.insert(keyboard, afterText: afterInsert);
+    }
     focusNode.requestFocus();
   }
 
