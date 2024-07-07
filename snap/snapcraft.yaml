@@ -63,6 +63,8 @@ parts:
     override-pull: |
       craftctl default
       craftctl set version=$(cat pubspec.yaml | grep "version[:]" | cut -d " " -f 2)
+    override-build: |
+      echo "skip flutter build"
   zenity:
     plugin: nil
     stage-packages:
