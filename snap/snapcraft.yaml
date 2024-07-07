@@ -64,7 +64,7 @@ parts:
       craftctl default
       craftctl set version=$(cat pubspec.yaml | grep "version[:]" | cut -d " " -f 2)
     override-build: |
-      echo "skip flutter build"
+      cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/
   zenity:
     plugin: nil
     stage-packages:
