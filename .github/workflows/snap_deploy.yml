@@ -41,14 +41,14 @@ jobs:
       - name: Install Flutter Build Tools for Linux
         run:  sudo apt install -y libsecret-1-dev libmpv-dev
 
-      - name: Get Version
-        run:  echo "VERSION=$(flutter pub run cider version)" >> $GITHUB_ENV
-
       - name: Flutter Build
         run:  |
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter build linux --release
+
+      - name: Get Version
+        run:  echo "VERSION=$(flutter pub run cider version)" >> $GITHUB_ENV
 
       - name: Build Snap
         id: snapcraft
