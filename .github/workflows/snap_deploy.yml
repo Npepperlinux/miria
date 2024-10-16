@@ -2,6 +2,7 @@
 name: デプロイ(snap)
 on:
   workflow_dispatch:
+  push:
   release:
     types: [published]
 
@@ -37,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload v$VERSION ${{ steps.snapcraft.outputs.snap }}
+          gh release create v$VERSION --draft ${{ steps.snapcraft.outputs.snap }}
       # https://gihyo.jp/admin/serial/01/ubuntu-recipe/0660#sec3 : Snapパッケージアップロードまでの流れ
       # https://github.com/snapcore/action-publish : Snap ActionのREADME.md
       # Snap Storeでパッケージ名"miria"を予約（$ snapcraft register miria）後、"SNAPCRAFT_STORE_CREDENTIALS"を登録し、
