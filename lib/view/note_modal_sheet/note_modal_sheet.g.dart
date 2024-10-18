@@ -7,7 +7,7 @@ part of 'note_modal_sheet.dart';
 // **************************************************************************
 
 String _$noteModalSheetNotifierHash() =>
-    r'7c144a3f0e1a67e3e0a6872d8e342504a6c5f272';
+    r'6e16e66d1e8ce6671ac6ba8bd9bb208c9b7b6652';
 
 /// Copied from Dart SDK
 class _SystemHash {

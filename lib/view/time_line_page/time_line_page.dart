@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
@@ -10,7 +12,6 @@ import "package:miria/providers.dart";
 import "package:miria/repository/socket_timeline_repository.dart";
 import "package:miria/repository/time_line_repository.dart";
 import "package:miria/router/app_router.dart";
-import "package:miria/view/channel_description_dialog.dart";
 import "package:miria/view/common/account_scope.dart";
 import "package:miria/view/common/common_drawer.dart";
 import "package:miria/view/common/error_detail.dart";
@@ -106,12 +107,6 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
   }
 
   void changeTab(int index) {
-    ref.read(timelineProvider(tabSettings[currentIndex])).disconnect();
-    final tabSetting = tabSettings[index];
-    if ([TabType.globalTimeline, TabType.homeTimeline, TabType.hybridTimeline]
-        .contains(tabSetting.tabType)) {
-      ref.read(timelineProvider(tabSetting)).moveToOlder();
-    }
     setState(() {
       currentIndex = index;
     });
@@ -278,7 +273,7 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                       onPressed: () async {
                         await context.pushRoute(
                           UsersListDetailRoute(
-                            accountContext: ref.read(accountContextProvider),
+                            accountContext: AccountContext.as(account),
                             listId: currentTabSetting.listId!,
                           ),
                         );

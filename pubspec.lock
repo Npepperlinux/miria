@@ -535,10 +535,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_launcher_icons
-      sha256: "526faf84284b86a4cb36d20a5e45147747b7563d921373d4ee0559c54fcdbcea"
+      sha256: "619817c4b65b322b5104b6bb6dfe6cda62d9729bd7ad4303ecc8b4e690a67a77"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.1"
+    version: "0.14.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -1042,8 +1042,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "feature/refactor_streaming"
-      resolved-ref: "353fa089ce860d95a303bd4ef66d810320dfd84e"
+      ref: HEAD
+      resolved-ref: e31e54cf6744c7b9c9c83ae3fcbbab97c2a83ac2
       url: "https://github.com/shiosyakeyakini-info/misskey_dart.git"
     source: git
     version: "1.0.0"
@@ -1680,10 +1680,10 @@ packages:
     dependency: "direct main"
     description:
       name: twemoji_v2
-      sha256: e573f62ef26b1261c6a5e027096187a9b49da77d14bdeb54b16a55bd1127d482
+      sha256: "1894d08626e6f07cb3dcd6286855407b322c157445008b54f683058fb868e1fb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.3"
+    version: "0.6.0"
   typed_data:
     dependency: transitive
     description:
