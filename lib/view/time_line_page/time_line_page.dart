@@ -4,6 +4,7 @@ import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:miria/model/general_settings.dart";
 import "package:miria/model/tab_setting.dart";
@@ -266,10 +267,12 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                         );
                       },
                       icon: const Icon(Icons.info_outline),
+                      tooltip: S.of(context).channelInformation,
                     )
                   else if (currentTabSetting.tabType == TabType.userList)
                     IconButton(
                       icon: const Icon(Icons.info_outline),
+                      tooltip: S.of(context).listSettings,
                       onPressed: () async {
                         await context.pushRoute(
                           UsersListDetailRoute(
@@ -295,6 +298,7 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                         );
                       },
                       icon: const Icon(Icons.smart_toy_outlined),
+                      tooltip: S.of(context).serverInformation,
                     ),
                   ],
                   const Padding(
@@ -308,6 +312,7 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                         socketTimeline != null && socketTimeline.isReconnecting
                             ? const CircularProgressIndicator.adaptive()
                             : const Icon(Icons.refresh),
+                    tooltip: S.of(context).refresh,
                   ),
                 ],
               ),
@@ -378,10 +383,12 @@ class TimeLinePageState extends ConsumerState<TimeLinePage> {
                   IconButton(
                     onPressed: note.expectFailure(context),
                     icon: const Icon(Icons.edit),
+                    tooltip: S.of(context).note,
                   ),
                   IconButton(
                     onPressed: noteCreateRoute,
                     icon: const Icon(Icons.keyboard_arrow_right),
+                    tooltip: S.of(context).edit,
                   ),
                 ],
               ),
@@ -498,11 +505,13 @@ class AnnoucementInfo extends ConsumerWidget {
             ),
           ],
         ),
+        tooltip: S.of(context).announcement,
       );
     } else {
       return IconButton(
         onPressed: () async => announcementsRoute(context, ref),
         icon: const Icon(Icons.campaign),
+        tooltip: S.of(context).announcement,
       );
     }
   }

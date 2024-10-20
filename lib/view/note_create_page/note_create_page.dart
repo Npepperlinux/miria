@@ -146,6 +146,7 @@ class NoteCreatePage extends HookConsumerWidget implements AutoRouteWrapper {
           IconButton(
             onPressed: () async => await notifier.note(),
             icon: const Icon(Icons.send),
+            tooltip: S.of(context).note,
           ),
         ],
       ),
@@ -196,6 +197,7 @@ class NoteCreatePage extends HookConsumerWidget implements AutoRouteWrapper {
                           IconButton(
                             onPressed: () async => await notifier.chooseFile(),
                             icon: const Icon(Icons.image),
+                            tooltip: S.of(context).attachedFile,
                           ),
                           if (noteCreationMode != NoteCreationMode.update)
                             IconButton(
@@ -205,6 +207,7 @@ class NoteCreatePage extends HookConsumerWidget implements AutoRouteWrapper {
                                     .toggleVote();
                               },
                               icon: const Icon(Icons.how_to_vote),
+                              tooltip: S.of(context).vote,
                             ),
                         ],
                         const CwToggleButton(),
@@ -212,6 +215,7 @@ class NoteCreatePage extends HookConsumerWidget implements AutoRouteWrapper {
                           IconButton(
                             onPressed: () async => notifier.addReplyUser(),
                             icon: const Icon(Icons.mail_outline),
+                            tooltip: S.of(context).mention,
                           ),
                         IconButton(
                           onPressed: () async {
@@ -240,6 +244,7 @@ class NoteCreatePage extends HookConsumerWidget implements AutoRouteWrapper {
                             ref.read(noteFocusProvider).requestFocus();
                           },
                           icon: const Icon(Icons.tag_faces),
+                          tooltip: S.of(context).customEmoji,
                         ),
                       ],
                     ),

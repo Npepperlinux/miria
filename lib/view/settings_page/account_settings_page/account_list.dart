@@ -25,6 +25,7 @@ class AccountListPage extends ConsumerWidget {
           IconButton(
             onPressed: () async => await context.pushRoute(const LoginRoute()),
             icon: const Icon(Icons.add),
+            tooltip: S.of(context).addUser,
           ),
         ],
       ),
@@ -95,6 +96,7 @@ class AccountListItem extends ConsumerWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.settings),
+            tooltip: S.of(context).accountSettings,
             onPressed: () {
               context.pushRoute(
                 SeveralAccountGeneralSettingsRoute(account: account),
@@ -103,6 +105,7 @@ class AccountListItem extends ConsumerWidget {
           ),
           IconButton(
             icon: const Icon(Icons.delete),
+            tooltip: S.of(context).delete,
             onPressed: () {
               showDialog(
                 context: context,

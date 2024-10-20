@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:miria/providers.dart";
 import "package:miria/router/app_router.dart";
@@ -26,6 +27,7 @@ class UsersListTimelinePage extends ConsumerWidget implements AutoRouteWrapper {
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
+            tooltip: S.of(context).listSettings,
             onPressed: () async => context.pushRoute(
               UsersListDetailRoute(
                 accountContext: accountContext,

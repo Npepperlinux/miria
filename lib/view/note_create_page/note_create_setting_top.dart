@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:miria/providers.dart";
@@ -92,11 +93,13 @@ class NoteCreateSettingTop extends ConsumerWidget {
               }
             },
             icon: Icon(resolveVisibilityIcon(noteVisibility)),
+            tooltip: S.of(context).noteVisibility,
           ),
         ),
         IconButton(
           onPressed: () async => notifier.toggleLocalOnly(),
           icon: isLocal ? const LocalOnlyIcon() : const Icon(Icons.rocket),
+          tooltip: S.of(context).federation,
         ),
         Builder(
           builder: (context2) => IconButton(
@@ -108,6 +111,7 @@ class NoteCreateSettingTop extends ConsumerWidget {
               notifier.setReactionAcceptance(result);
             },
             icon: AcceptanceIcon(acceptance: reactionAcceptance),
+            tooltip: S.of(context).reactionAcceptance,
           ),
         ),
       ],

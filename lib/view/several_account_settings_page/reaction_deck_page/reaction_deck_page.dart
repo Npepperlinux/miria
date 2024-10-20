@@ -146,6 +146,7 @@ class ReactionDeckPageState extends ConsumerState<ReactionDeckPage> {
                       });
                     },
                     icon: const Icon(Icons.add),
+                    tooltip: S.of(context).addEmoji,
                   ),
                   Expanded(
                     child: Text(S.of(context).editReactionDeckDescription),

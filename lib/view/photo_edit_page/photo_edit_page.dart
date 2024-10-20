@@ -80,6 +80,7 @@ class PhotoEditPageState extends ConsumerState<PhotoEditPage> {
                 }
               },
               icon: const Icon(Icons.save),
+              tooltip: S.of(context).save,
             ),
           ],
         ),

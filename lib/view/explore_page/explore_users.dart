@@ -80,6 +80,7 @@ class ExploreUsers extends HookConsumerWidget {
                           ? Icons.keyboard_arrow_up
                           : Icons.keyboard_arrow_down,
                     ),
+                    tooltip: S.of(context).settings,
                   ),
                 ],
               ),

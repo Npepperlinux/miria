@@ -111,6 +111,7 @@ class VoteContentListItem extends HookConsumerWidget {
                   .deleteVoteContent(index);
             },
             icon: const Icon(Icons.close),
+            tooltip: S.of(context).deleteChoice,
           ),
         ],
       ),

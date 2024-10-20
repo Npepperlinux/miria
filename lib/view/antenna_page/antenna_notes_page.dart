@@ -42,6 +42,7 @@ class AntennaNotesPage extends ConsumerWidget implements AutoRouteWrapper {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
+            tooltip: S.of(context).settings,
             onPressed: () async {
               final settings = await context.pushRoute<AntennaSettings>(
                 AntennaSettingsRoute(

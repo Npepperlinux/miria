@@ -239,6 +239,7 @@ class RenoteModalSheet extends HookConsumerWidget {
                   icon: isLocalOnly.value
                       ? const LocalOnlyIcon()
                       : const Icon(Icons.rocket),
+                  tooltip: S.of(context).federation,
                 ),
               ],
             ),

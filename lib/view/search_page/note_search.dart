@@ -58,6 +58,7 @@ class NoteSearch extends HookConsumerWidget {
                 icon: isDetail.value
                     ? const Icon(Icons.keyboard_arrow_up)
                     : const Icon(Icons.keyboard_arrow_down),
+                tooltip: S.of(context).settings,
               ),
             ],
           ),
@@ -111,8 +112,8 @@ class NoteSearch extends HookConsumerWidget {
                                       );
                                       selectedUser.value = selected;
                                     },
-                                    icon:
-                                        const Icon(Icons.keyboard_arrow_right),
+                                    icon: const Icon(Icons.keyboard_arrow_right),
+                                    tooltip: S.of(context).selectUser,
                                   ),
                                 ],
                               ),
@@ -143,8 +144,8 @@ class NoteSearch extends HookConsumerWidget {
                                       );
                                       selectedChannel.value = selected;
                                     },
-                                    icon:
-                                        const Icon(Icons.keyboard_arrow_right),
+                                    icon:  const Icon(Icons.keyboard_arrow_right),
+                                    tooltip: S.of(context).selectChannel,
                                   ),
                                 ],
                               ),

@@ -55,6 +55,7 @@ class ReplyToArea extends ConsumerWidget {
                       Theme.of(context).textTheme.bodySmall?.fontSize ?? 22,
                     ),
                   ),
+                  tooltip: S.of(context).removeUser,
                   constraints: const BoxConstraints(),
                   padding: EdgeInsets.zero,
                   style: const ButtonStyle(
@@ -81,6 +82,7 @@ class ReplyToArea extends ConsumerWidget {
               size: MediaQuery.textScalerOf(context)
                   .scale(Theme.of(context).textTheme.bodySmall?.fontSize ?? 22),
             ),
+            tooltip: S.of(context).addUser,
           ),
         ],
       ),

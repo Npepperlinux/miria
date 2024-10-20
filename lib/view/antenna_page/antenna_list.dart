@@ -24,6 +24,7 @@ class AntennaList extends ConsumerWidget {
               title: Text(antenna.name),
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
+                tooltip: S.of(context).delete,
                 onPressed: () async {
                   final result = await SimpleConfirmDialog.show(
                     context: context,

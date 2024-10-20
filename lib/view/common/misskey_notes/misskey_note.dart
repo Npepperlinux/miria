@@ -773,6 +773,7 @@ class MisskeyNote extends HookConsumerWidget {
                                     .bodySmall
                                     ?.color,
                               ),
+                              tooltip: S.of(context).menu,
                             ),
                           ],
                         ),
@@ -1079,6 +1080,7 @@ class FooterReactionButton extends StatelessWidget {
         size: MediaQuery.textScalerOf(context).scale(16),
         color: Theme.of(context).textTheme.bodySmall?.color,
       ),
+      tooltip: S.of(context).reaction,
     );
   }
 }

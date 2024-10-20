@@ -263,6 +263,7 @@ class ServerDetailDialog extends HookConsumerWidget
                                     onPressed: () =>
                                         ref.invalidate(_pingProvider),
                                     icon: const Icon(Icons.refresh),
+                                    tooltip: S.of(context).refresh,
                                   ),
                                 ),
                               ],

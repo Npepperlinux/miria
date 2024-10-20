@@ -31,6 +31,7 @@ class TabSettingsListPage extends ConsumerWidget {
           IconButton(
             onPressed: () async => await context.pushRoute(TabSettingsRoute()),
             icon: const Icon(Icons.add),
+            tooltip: S.of(context).add,
           ),
         ],
       ),

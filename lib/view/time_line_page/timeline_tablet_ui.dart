@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:miria/hooks/use_async.dart";
@@ -159,6 +160,7 @@ class SectionHeader extends ConsumerWidget {
         if (socketTimeline != null)
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: S.of(context).refresh,
             onPressed: () async => socketTimeline.reconnect(),
           ),
       ],
@@ -219,6 +221,7 @@ class TabTextField extends HookConsumerWidget {
               icon: localOnly.value
                   ? const LocalOnlyIcon()
                   : const Icon(Icons.rocket),
+              tooltip: S.of(context).federation,
             ),
             IconButton(
               onPressed: () async {
@@ -233,6 +236,7 @@ class TabTextField extends HookConsumerWidget {
             IconButton(
               onPressed: note.executeOrNull,
               icon: const Icon(Icons.send),
+              tooltip: S.of(context).note,
             ),
           ],
         ),

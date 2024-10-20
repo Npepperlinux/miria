@@ -121,6 +121,7 @@ class UserNotes extends HookConsumerWidget {
                   }
                 },
                 icon: const Icon(Icons.date_range),
+                tooltip: S.of(context).goBackInTime,
               ),
             ],
           ),

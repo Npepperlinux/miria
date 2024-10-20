@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:miria/model/image_file.dart";
 import "package:miria/providers.dart";
@@ -86,10 +87,12 @@ class CreateFileView extends ConsumerWidget {
                     IconButton(
                       onPressed: () => detailTap(context, ref),
                       icon: const Icon(Icons.more_vert),
+                      tooltip: S.of(context).settings,
                     ),
                     IconButton(
                       onPressed: () => delete(context, ref),
                       icon: const Icon(Icons.delete),
+                      tooltip: S.of(context).delete,
                     ),
                   ],
                 ),
@@ -114,10 +117,12 @@ class CreateFileView extends ConsumerWidget {
                 IconButton(
                   onPressed: () async => detailTap(context, ref),
                   icon: const Icon(Icons.more_vert),
+                  tooltip: S.of(context).settings,
                 ),
                 IconButton(
                   onPressed: () => delete(context, ref),
                   icon: const Icon(Icons.delete),
+                  tooltip: S.of(context).delete,
                 ),
               ],
             ),

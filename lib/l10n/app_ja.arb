@@ -73,6 +73,13 @@
     "contentWarning": "注釈",
     "follower": "フォロワー",
     "sending": "送信中",
+    "refresh": "更新",
+    "add": "追加",
+    "nothingHere": "なんもないで",
+    "menu": "メニュー",
+    "federation": "連合",
+    "attachedFile": "添付ファイル",
+    "vote": "投票",
 
     "antennaName": "アンテナの名前",
     "antennaSource": "アンテナのソース",
@@ -80,6 +87,7 @@
     "antennaSourceAll": "ぜんぶ",
     "antennaSourceUser": "ユーザー",
     "antennaSourceList": "リスト",
+    "selectUser": "ユーザーを選択",
     "selectAntennaSource": "ソースを選択",
     "selectList": "リストを選択",
     "antennaSourceUserHintText": "ユーザーネームを改行で区切って指定します",
@@ -169,6 +177,7 @@
 
     "closeTweet": "ツイートを閉じる",
     "closePlayer": "プレイヤーを閉じる",
+    "closeKeyboard": "キーボードを閉じる",
     "doneCopy": "コピーしたで",
     "mutedNotePlaceholder": "{userName}が何か言うとるわ",
     "@mutedNotePlaceholder": {
@@ -399,6 +408,7 @@
     "favoriteNonSensitiveOnlyAndLikeOnlyForRemote": "非センシティブのみ（リモートからはいいねのみ）",
     "replyTo": "返信先",
     "addChoice": "増やす",
+    "deleteChoice": "減らす",
     "choiceNumber": "回答{choice}",
     "@choiceNumber": {
         "placeholders": {
@@ -509,7 +519,7 @@
     "reauthorizate": "再度認証をする",
     "chooseLoginServer": "ログインするサーバーを選んでください",
     "didAuthorize": "認証してきた",
-
+    "searchServer": "サーバーを検索",
 
 
     "thrownConnectionError": "通信に失敗しました。",
@@ -759,6 +769,7 @@
 
     "generalSettings": "全般設定",
     "accountSettings": "アカウント設定",
+    "selectAccount": "アカウントを選択",
     "tabSettings": "タブ設定",
     "settingsImportAndExport": "設定のインポート・エクスポート",
     "aboutMiria": "このアプリについて",
@@ -871,6 +882,7 @@
     "invalidInput": "入力が有効な値ではありません",
     "clear": "クリア",
     "copy": "コピー",
+    "addEmoji": "絵文字を追加",
     "editReactionDeckDescription": "長押しして並び変え、押して削除、＋を押して追加します。",
     "confirmClearReactionDeck": "すでに設定済みのリアクションデッキをいったんすべてクリアしますか？",
     "clearReactionDeck": "クリアする",
@@ -896,6 +908,7 @@
 
     "createAntenna": "アンテナを作成",
     "memo": "メモ",
+    "editMemo": "メモを編集",
     "memoDescription": "なんかメモることあったら書いとき",
     "confirmCreateBlock": "ブロックしてもええか？",
     "createBlock": "ブロックする",
@@ -931,6 +944,7 @@
     "includeRepliesShort": "返信つき",
     "mediaOnlyShort": "ファイルつき",
     "displayRenotesShort": "リノートも",
+    "goBackInTime": "日付をさかのぼる",
     "showNotesBeforeThisDate": "この日までを表示",
     "showNotesBeforeThisTime": "この時間までを表示",
     "userHighlightAvailability": "ハイライトはMisskey 2023.10.0以降の機能です。",
@@ -946,6 +960,7 @@
     "userPlaysAvailability": "この機能はMisskey 2023.9以降でのみ使用できます。",
     "createList": "リストを作成",
 
+    "listSettings": "リスト設定",
     "listName": "リスト名",
     "members": "メンバー",
     "listCapacity": "{members}/{limit}人",

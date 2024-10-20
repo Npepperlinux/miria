@@ -125,6 +125,7 @@ class UsersListDetailPage extends ConsumerWidget implements AutoRouteWrapper {
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
+              tooltip: S.of(context).settings,
               onPressed: () async {
                 final settings = await showDialog<UsersListSettings>(
                   context: context,
@@ -194,6 +195,7 @@ class UsersListDetailPage extends ConsumerWidget implements AutoRouteWrapper {
                           ),
                           IconButton(
                             icon: const Icon(Icons.close),
+                            tooltip: S.of(context).removeUser,
                             onPressed: () async {
                               final result = await SimpleConfirmDialog.show(
                                 context: context,

@@ -54,6 +54,7 @@ class ClipDetailPage extends HookConsumerWidget implements AutoRouteWrapper {
           if (clip != null)
             IconButton(
               icon: const Icon(Icons.settings),
+              tooltip: S.of(context).settings,
               onPressed: updateClip.executeOrNull,
             ),
         ],

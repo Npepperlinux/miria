@@ -82,6 +82,7 @@ class APiKeyLoginState extends ConsumerState<ApiKeyLogin> {
                           }
                         },
                         icon: const Icon(Icons.search),
+                        tooltip: S.of(context).searchServer,
                       ),
                     ),
                   ),

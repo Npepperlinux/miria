@@ -31,6 +31,7 @@ class ClipListPage extends ConsumerWidget implements AutoRouteWrapper {
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
+            tooltip: S.of(context).add,
             onPressed: () async {
               final settings = await context.pushRoute<ClipSettings>(
                 ClipSettingsRoute(title: Text(S.of(context).create)),
@@ -72,6 +73,7 @@ class _RemoveButton extends HookConsumerWidget {
     );
     return IconButton(
       icon: const Icon(Icons.delete),
+      tooltip: S.of(context).delete,
       onPressed: delete.executeOrNull,
     );
   }

@@ -138,6 +138,7 @@ class TabSettingsPage extends HookConsumerWidget {
                 Navigator.of(context).pop();
               },
               icon: const Icon(Icons.delete_outline_outlined),
+              tooltip: S.of(context).delete,
             ),
         ],
       ),
@@ -210,6 +211,7 @@ class TabSettingsPage extends HookConsumerWidget {
                                 selectedRole.value?.name ?? nameController.text;
                           },
                           icon: const Icon(Icons.navigate_next),
+                          tooltip: S.of(context).selectRole,
                         ),
                       ],
                     ),
@@ -236,6 +238,7 @@ class TabSettingsPage extends HookConsumerWidget {
                                 nameController.text;
                           },
                           icon: const Icon(Icons.navigate_next),
+                          tooltip: S.of(context).selectChannel,
                         ),
                       ],
                     ),
@@ -263,6 +266,7 @@ class TabSettingsPage extends HookConsumerWidget {
                                     nameController.text;
                           },
                           icon: const Icon(Icons.navigate_next),
+                          tooltip: S.of(context).selectList,
                         ),
                       ],
                     ),
@@ -287,6 +291,7 @@ class TabSettingsPage extends HookConsumerWidget {
                                 nameController.text;
                           },
                           icon: const Icon(Icons.navigate_next),
+                          tooltip: S.of(context).selectAntenna,
                         ),
                       _ => const CircularProgressIndicator.adaptive(),
                     },
@@ -328,6 +333,7 @@ class TabSettingsPage extends HookConsumerWidget {
                       );
                     },
                     icon: const Icon(Icons.navigate_next),
+                    tooltip: S.of(context).selectIcon,
                   ),
                 ],
               ),

@@ -81,6 +81,7 @@ class MiAuthLoginState extends ConsumerState<MiAuthLogin> {
                           }
                         },
                         icon: const Icon(Icons.search),
+                        tooltip: S.of(context).searchServer,
                       ),
                     ),
                   ),

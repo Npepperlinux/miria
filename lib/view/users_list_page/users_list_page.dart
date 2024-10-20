@@ -29,6 +29,7 @@ class UsersListPage extends ConsumerWidget implements AutoRouteWrapper {
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
+            tooltip: S.of(context).addToList,
             onPressed: () async {
               final settings = await context.pushRoute<UsersListSettings>(
                 UsersListSettingsRoute(title: Text(S.of(context).create)),
@@ -53,6 +54,7 @@ class UsersListPage extends ConsumerWidget implements AutoRouteWrapper {
                   title: Text(list.name ?? ""),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
+                    tooltip: S.of(context).delete,
                     onPressed: () async => ref
                         .read(usersListsNotifierProvider.notifier)
                         .delete(list.id),
