@@ -2,7 +2,7 @@ name: miria
 description: Miria is Misskey Client for Mobile App.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 2.0.0+101
+version: 2.0.0+103
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -15,9 +15,7 @@ dependencies:
     sdk: flutter
   flutter_html: ^3.0.0-beta.2
   misskey_dart:
-    git: 
-      url: https://github.com/shiosyakeyakini-info/misskey_dart.git
-      ref: feature/refactor_streaming
+    git: https://github.com/shiosyakeyakini-info/misskey_dart.git
   mfm: ^1.0.5
   tuple: ^2.0.1
   path_provider: ^2.0.14
@@ -46,7 +44,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
   percent_indicator: ^4.2.3
   fl_chart: ^0.68.0
-  receive_sharing_intent: 1.4.5
+  receive_sharing_intent: 1.5.4
   share_plus: ^9.0.0
   mfm_parser: ^1.0.3
   flutter_svg: ^2.0.6
@@ -58,7 +56,8 @@ dependencies:
   device_info_plus: ^10.1.0
   colorfilter_generator: ^0.0.8
   matrix2d: ^1.0.4
-  twemoji_v2: ^0.5.3
+  # TODO: DISCONTINUED
+  twemoji_v2: ^0.6.0
   flutter_image_compress: ^2.0.4
   webview_flutter: ^4.3.0
   webview_flutter_android: ^3.12.0
@@ -77,6 +76,7 @@ dependencies:
   hooks_riverpod: ^3.0.0-dev.3
   flutter_hooks: ^0.20.5
   punycode: ^1.0.0
+  screen_brightness: ^0.2.2
 
 dependency_overrides:
   image_editor:
@@ -91,6 +91,10 @@ dependency_overrides:
     git:
       url: https://github.com/shiosyakeyakini-info/flutter_image_editor_fix_ios_color_option.git
       path: ./image_editor_platform_interface/
+  image_gallery_saver:
+    git:
+      url: https://github.com/knottx/image_gallery_saver.git
+      ref: knottx-latest
 
 dev_dependencies:
   flutter_test:
@@ -101,7 +105,7 @@ dev_dependencies:
   build_runner: ^2.3.3
   freezed: ^2.3.2
   json_serializable: ^6.6.1
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.1
   mockito: ^5.4.2
   cider: ^0.2.3
   riverpod_generator: ^3.0.0-dev.3

@@ -199,6 +199,7 @@ abstract class SocketTimelineRepository extends TimelineRepository {
   @override
   Future<void> subscribe(SubscribeItem item) async {
     if (!tabSetting.isSubscribe) return;
+    await ref.read(misskeyStreamingProvider(misskey).future);
     final index =
         subscribedList.indexWhere((element) => element.noteId == item.noteId);
     final isSubscribed = subscribedList.indexWhere(
@@ -249,6 +250,7 @@ abstract class SocketTimelineRepository extends TimelineRepository {
   @override
   Future<void> describe(String id) async {
     if (!tabSetting.isSubscribe) return;
+    await ref.read(misskeyStreamingProvider(misskey).future);
     streamingController?.unsubNote(id);
   }
 
@@ -267,9 +269,7 @@ abstract class SocketTimelineRepository extends TimelineRepository {
 
   Future<void> listenMain(StreamingResponse response) async {
     switch (response) {
-      case StreamingChannelResponse():
-        return;
-      case StreamingChannelNoteUpdatedResponse(:final body):
+      case StreamingChannelResponse(:final body):
         switch (body) {
           case ReadAllNotificationsChannelEvent():
             await accountRepository.readAllNotification(account);
@@ -277,11 +277,7 @@ abstract class SocketTimelineRepository extends TimelineRepository {
             await accountRepository.addUnreadNotification(account);
           case ReadAllAnnouncementsChannelEvent():
             await accountRepository.removeUnreadAnnouncement(account);
-          case AnnouncementCreatedChannelEvent(:final body):
-            await accountRepository.createUnreadAnnouncement(
-              account,
-              body.announcement,
-            );
+          case AnnouncementCreatedChannelEvent():
           case NoteChannelEvent():
           case StatsLogChannelEvent():
           case StatsChannelEvent():
@@ -317,6 +313,7 @@ abstract class SocketTimelineRepository extends TimelineRepository {
           case PollVotedChannelEvent():
           case UpdatedChannelEvent():
         }
+      case StreamingChannelNoteUpdatedResponse():
       case StreamingChannelEmojiAddedResponse():
       case StreamingChannelEmojiUpdatedResponse():
       case StreamingChannelEmojiDeletedResponse():
@@ -445,14 +442,8 @@ abstract class SocketTimelineRepository extends TimelineRepository {
       case StreamingChannelEmojiUpdatedResponse():
       case StreamingChannelEmojiDeletedResponse():
         await emojiRepository.loadFromSource();
-
-      case StreamingChannelAnnouncementCreatedResponse(:final body):
-        await accountRepository.createUnreadAnnouncement(
-          account,
-          body.announcement,
-        );
       case StreamingChannelUnknownResponse():
-      // TODO: Handle this case.
+      case StreamingChannelAnnouncementCreatedResponse():
     }
   }
 }
