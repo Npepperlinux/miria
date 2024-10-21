@@ -269,7 +269,9 @@ abstract class SocketTimelineRepository extends TimelineRepository {
 
   Future<void> listenMain(StreamingResponse response) async {
     switch (response) {
-      case StreamingChannelResponse(:final body):
+      case StreamingChannelResponse():
+        return;
+      case StreamingChannelNoteUpdatedResponse(:final body):
         switch (body) {
           case ReadAllNotificationsChannelEvent():
             await accountRepository.readAllNotification(account);
@@ -277,7 +279,11 @@ abstract class SocketTimelineRepository extends TimelineRepository {
             await accountRepository.addUnreadNotification(account);
           case ReadAllAnnouncementsChannelEvent():
             await accountRepository.removeUnreadAnnouncement(account);
-          case AnnouncementCreatedChannelEvent():
+          case AnnouncementCreatedChannelEvent(:final body):
+            await accountRepository.createUnreadAnnouncement(
+              account,
+              body.announcement,
+            );
           case NoteChannelEvent():
           case StatsLogChannelEvent():
           case StatsChannelEvent():
@@ -313,7 +319,6 @@ abstract class SocketTimelineRepository extends TimelineRepository {
           case PollVotedChannelEvent():
           case UpdatedChannelEvent():
         }
-      case StreamingChannelNoteUpdatedResponse():
       case StreamingChannelEmojiAddedResponse():
       case StreamingChannelEmojiUpdatedResponse():
       case StreamingChannelEmojiDeletedResponse():
@@ -442,8 +447,14 @@ abstract class SocketTimelineRepository extends TimelineRepository {
       case StreamingChannelEmojiUpdatedResponse():
       case StreamingChannelEmojiDeletedResponse():
         await emojiRepository.loadFromSource();
+
+      case StreamingChannelAnnouncementCreatedResponse(:final body):
+        await accountRepository.createUnreadAnnouncement(
+          account,
+          body.announcement,
+        );
       case StreamingChannelUnknownResponse():
-      case StreamingChannelAnnouncementCreatedResponse():
+      // TODO: Handle this case.
     }
   }
 }
