@@ -122,7 +122,7 @@ class FederationInfo extends ConsumerWidget {
                         S.of(context).administrator,
                         textAlign: TextAlign.center,
                       ),
-                      Text("${data.maintainerName}"),
+                      SelectableText("${data.maintainerName}"),
                     ],
                   ),
                 if (data.maintainerEmail != null)
@@ -132,7 +132,7 @@ class FederationInfo extends ConsumerWidget {
                         S.of(context).contact,
                         textAlign: TextAlign.center,
                       ),
-                      Text("${data.maintainerEmail}"),
+                      SelectableText("${data.maintainerEmail}"),
                     ],
                   ),
                 if (data.serverRules.isNotEmpty)
