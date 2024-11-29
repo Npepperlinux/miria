@@ -33,6 +33,7 @@ class UserDetail extends ConsumerWidget {
     // );
     final notifier = ref.read(userInfoNotifierProxyProvider(response.id));
     final memo = response.memo ?? "";
+    final movedTo = ref.read(misskeyGetContextProvider).users.show(UsersShowRequest(userId: response.movedTo.toString()));
 
     final isSameAccount = ref.read(accountContextProvider).isSame;
 
@@ -184,6 +185,23 @@ class UserDetail extends ConsumerWidget {
                   ),
                 ],
               ),
+              const Padding(padding: EdgeInsets.only(top: 5)),
+              if (response.movedTo!=null)
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MfmText(
+                            mfmText: "このアカウントは @${movedTo.username} 引っ越したらしい",
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               const Padding(padding: EdgeInsets.only(top: 5)),
               if (isSameAccount)
                 Card(
