@@ -52,7 +52,7 @@ parts:
     #plugin: flutter
     plugin: nil
     build-environment:
-      - PATH: /snap/gnome-46-2404-sdk/current/usr/bin:$CRAFT_PART_BUILD/FlutterSDK/bin${PATH:+:$PATH}
+      - PATH: /snap/gnome-42-2204-sdk/current/usr/bin:$CRAFT_PART_BUILD/FlutterSDK/bin${PATH:+:$PATH}
     build-packages:
       - libmpv-dev
       - libsecret-1-dev
@@ -65,7 +65,7 @@ parts:
       - unzip
       - jq
     build-snaps:
-       - gnome-46-2404-sdk/latest/candidate
+       - gnome-42-2204-sdk
     stage-packages:
       - libmpv1
       - libsecret-1-0
