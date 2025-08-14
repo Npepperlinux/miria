@@ -1,6 +1,8 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:miria/l10n/app_localizations.dart";
 import "package:miria/model/misskey_emoji_data.dart";
 import "package:miria/providers.dart";
 import "package:miria/view/common/account_scope.dart";
@@ -39,16 +41,38 @@ class ReactionUserDialog extends ConsumerWidget implements AutoRouteWrapper {
     }
 
     return AlertDialog(
-      title: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomEmoji(emojiData: emojiData),
-          Text(
-            emojiData.baseName,
-            style: Theme.of(context).textTheme.bodySmall,
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomEmoji(emojiData: emojiData),
+              Text(
+                emojiData.baseName,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
           ),
+          IconButton(
+            onPressed: () async {
+              await Clipboard.setData(
+                ClipboardData(
+                  text: emojiData.baseName,
+                ),
+              );
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(S.of(context).doneCopy),
+                  duration: const Duration(seconds: 1),
+                ),
+              );
+            },
+            icon: Icon(Icons.copy),
+          )
         ],
       ),
       content: SizedBox(
