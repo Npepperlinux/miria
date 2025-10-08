@@ -65,7 +65,7 @@ class ClipListPage extends ConsumerWidget implements AutoRouteWrapper {
                 alignment: Alignment.center,
                 children: [
                   CircularProgressIndicator(
-                    value: 1 - (clip.notesCount ?? 0) / noteEachClipsLimit,
+                    value: (clip.notesCount ?? 0) / noteEachClipsLimit,
                     color: ((clip.notesCount ?? 0) / noteEachClipsLimit) <= 0.75
                       ? null
                       : Colors.red,
