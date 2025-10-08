@@ -75,6 +75,7 @@ class ClipListPage extends ConsumerWidget implements AutoRouteWrapper {
                       (noteEachClipsLimit - (clip.notesCount ?? 0)).toString(),
                       style: TextStyle(
                         fontSize: 12,
+                        fontWeight: FontWeight.bold,
                         color: (noteEachClipsLimit - (clip.notesCount ?? 0)) <= 0
                           ? Colors.red
                           : null,
