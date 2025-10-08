@@ -27,6 +27,9 @@ class ClipListPage extends ConsumerWidget implements AutoRouteWrapper {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(clipsProvider, (_, _) {});
 
+    final noteEachClipsLimit =
+        accountContext.postAccount.i.policies.noteEachClipsLimit.toInt();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).clip),
@@ -63,7 +66,33 @@ class ClipListPage extends ConsumerWidget implements AutoRouteWrapper {
         },
         itemBuilder: (context, clip) => ClipItem(
           clip: clip,
-          trailing: _RemoveButton(id: clip.id),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    value: 1 - (clip.notesCount ?? 0) / noteEachClipsLimit,
+                    color: ((clip.notesCount ?? 0) / noteEachClipsLimit) <= 0.75
+                      ? null
+                      : Colors.red,
+                  ),
+                  if ((noteEachClipsLimit - (clip.notesCount ?? 0)) <= 99)
+                    Text(
+                      (noteEachClipsLimit - (clip.notesCount ?? 0)).toString(),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: (noteEachClipsLimit - (clip.notesCount ?? 0)) <= 0
+                          ? Colors.red
+                          : null,
+                        ),
+                    ),
+                ],
+              ),
+              _RemoveButton(id: clip.id),
+            ],
+          ),
         ),
       ),
     );
