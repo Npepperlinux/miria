@@ -1540,7 +1540,7 @@ abstract class S {
   ///
   /// In ja, this message translates to:
   /// **'{usersCount}<small>人</small>'**
-  String onlineUsersCount(int usersCount, Object n);
+  String onlineUsersCount(int usersCount);
 
   /// No description provided for @cpuUsageRate.
   ///

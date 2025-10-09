@@ -843,7 +843,7 @@ class SJa extends S {
   String get onlineUsers => 'サーバーオンライン人数';
 
   @override
-  String onlineUsersCount(int usersCount, Object n) {
+  String onlineUsersCount(int usersCount) {
     final intl.NumberFormat usersCountNumberFormat =
         intl.NumberFormat.decimalPattern(localeName);
     final String usersCountString = usersCountNumberFormat.format(usersCount);

@@ -446,7 +446,7 @@
     "readAnnouncement": "已读",
     "didNotReadAnnouncement": "还没读，请稍等",
     "onlineUsers": "服务器在线人数",
-    "onlineUsersCount": "{n} 人在线",
+    "onlineUsersCount": "{usersCount} 人在线",
     "@onlineUsersCount": {
         "placeholders": {
             "usersCount": {
@@ -796,7 +796,6 @@
     "standardIcon": "标准",
     "emojiIcon": "自定义表情符号",
     "selectRole": "选择角色",
-    "apply": "应用",
     "account": "账户",
     "tabType": "选项卡类型",
     "tabName": "选项卡名称",
