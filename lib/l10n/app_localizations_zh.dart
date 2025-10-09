@@ -846,12 +846,12 @@ class SZh extends S {
   String get onlineUsers => '服务器在线人数';
 
   @override
-  String onlineUsersCount(int usersCount, Object n) {
+  String onlineUsersCount(int usersCount) {
     final intl.NumberFormat usersCountNumberFormat =
         intl.NumberFormat.decimalPattern(localeName);
     final String usersCountString = usersCountNumberFormat.format(usersCount);
 
-    return '$n 人在线';
+    return '$usersCountString 人在线';
   }
 
   @override
@@ -2959,12 +2959,12 @@ class SZhCn extends SZh {
   String get onlineUsers => '服务器在线人数';
 
   @override
-  String onlineUsersCount(int usersCount, Object n) {
+  String onlineUsersCount(int usersCount) {
     final intl.NumberFormat usersCountNumberFormat =
         intl.NumberFormat.decimalPattern(localeName);
     final String usersCountString = usersCountNumberFormat.format(usersCount);
 
-    return '$n 人在线';
+    return '$usersCountString 人在线';
   }
 
   @override
