@@ -22,6 +22,8 @@ class UsersListPage extends ConsumerWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final list = ref.watch(usersListsProvider);
+    final userEachUserListsLimit =
+        accountContext.postAccount.i.policies.userEachUserListsLimit;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,10 +51,44 @@ class UsersListPage extends ConsumerWidget implements AutoRouteWrapper {
                 final list = data[index];
                 return ListTile(
                   title: Text(list.name ?? ""),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () async =>
-                        ref.read(usersListsProvider.notifier).delete(list.id),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            value: list.userIds.length / userEachUserListsLimit,
+                            color:
+                                (list.userIds.length / userEachUserListsLimit <=
+                                    0.75)
+                                ? null
+                                : Colors.red,
+                          ),
+                          if (userEachUserListsLimit - list.userIds.length <=
+                              99)
+                            Text(
+                              (userEachUserListsLimit.toInt() -
+                                      list.userIds.length)
+                                  .toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    userEachUserListsLimit <=
+                                        list.userIds.length
+                                    ? Colors.red
+                                    : null,
+                              ),
+                            ),
+                        ],
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () async => ref
+                            .read(usersListsProvider.notifier)
+                            .delete(list.id),
+                      ),
+                    ],
                   ),
                   onTap: () async => context.pushRoute(
                     UsersListTimelineRoute(
