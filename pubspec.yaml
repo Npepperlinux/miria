@@ -47,10 +47,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
   percent_indicator: ^4.2.3
   fl_chart: ^1.0.0
-  receive_sharing_intent:
-    git:
-      url: https://github.com/KasemJaffer/receive_sharing_intent
-      ref: 2cea396843cd3ab1b5ec4334be4233864637874e
+  receive_sharing_intent: ^1.9.0
   share_plus: ^13.2.1
   mfm_parser: ^1.0.7
   flutter_svg: ^2.0.6
@@ -73,7 +70,7 @@ dependencies:
   window_manager: ^0.5.2
   shared_preference_app_group: ^2.1.0
   stack_trace: ^1.11.1
-  flutter_cache_manager: ^3.4.1
+  flutter_cache_manager: ^3.4.2
   riverpod_annotation: ^4.0.2
   simple_logger: ^1.9.0+3
   hooks_riverpod: ^3.0.0-dev.16
@@ -96,15 +93,10 @@ dependency_overrides:
     git:
       url: https://github.com/shiosyakeyakini-info/flutter_image_editor_fix_ios_color_option.git
       path: ./image_editor_platform_interface/
-  flutter_cache_manager:
-    git:
-      url: https://github.com/Baseflow/flutter_cache_manager
-      ref: 54904e499a06d0364a2b3f4ca9789e5f829f1879
-      path: ./flutter_cache_manager
   permission_handler_windows:
     git:
-      url: https://github.com/MSOB7YY/flutter-permission-handler
-      ref: 32ffba1b3b62a881b2208297fd20bfb2776000bd
+      url: https://github.com/prismplural/flutter-permission-handler
+      ref: 721669c9f9b764fd95a186f2d3ebe3294ddfb672
       path: ./permission_handler_windows
 
 dev_dependencies:
