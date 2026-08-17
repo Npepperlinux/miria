@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dart-lang/setup-dart@v1
 
       - name: Get Flutter version from .fvmrc
@@ -39,7 +39,7 @@ jobs:
 
       - name: Run flutter pub get
         run: flutter pub get
-      
+
       # ゆくゆくは
       # - run: flutter analyze --fatal-infos
 

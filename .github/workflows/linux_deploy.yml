@@ -24,7 +24,7 @@ jobs:
       snap: ${{ steps.snapcraft.outputs.snap }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Build Snap
         id: snapcraft
@@ -65,7 +65,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
         - name: Clone repository
-          uses: actions/checkout@v4
+          uses: actions/checkout@v7
 
         - name: Set up Docker
           uses: docker/setup-buildx-action@v3
@@ -124,7 +124,7 @@ jobs:
                 export PATH="/root/fvm/bin:$PATH"
                 fvm install --setup
             '
-        
+
         - name: Build
           run: |
             docker exec debian bash -c '
@@ -140,7 +140,7 @@ jobs:
                 mkdir -p \
                     "${PKG_DIR}/opt/miria" \
                     "${PKG_DIR}/usr/bin"
-                
+
                 case "${ARCH}" in
                   "amd64" ) cp -rp ./build/linux/x64/release/bundle/* "${PKG_DIR}/opt/miria/" ;;
                   "arm64" ) cp -rp ./build/linux/arm64/release/bundle/* "${PKG_DIR}/opt/miria/" ;;
@@ -157,7 +157,7 @@ jobs:
                 sed -i -E "s|^Version: .*|Version: ${VERSION}|g" "${PKG_DIR}/DEBIAN/control"
                 sed -i -E "s|^Architecture: .*|Architecture: ${ARCH}|g" "${PKG_DIR}/DEBIAN/control"
             '
-        
+
         - name: Generate .deb File
           run: |
             docker exec debian bash -c '

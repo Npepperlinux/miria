@@ -13,7 +13,7 @@ jobs:
     name: Windows用ビルド
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Get Flutter version from .fvmrc
         run:  echo "FLUTTER_FVM_VERSION=$(jq -r .flutter .fvmrc)" >> $env:GITHUB_ENV
